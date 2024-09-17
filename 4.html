@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<!-- Métadonnées SEO -->
+<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
+<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
+<meta name='author' content='Otmane Echaibi'>
+<meta property='og:title' content='Offres d'emploi au Maroc'>
+<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
+<meta property='og:image' content='logo.png'>
+<meta property='og:url' content='https://example.com'>
+
+<!-- Favicon -->
+<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
+
+<!-- Polices et icônes -->
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
+
+    <title>Maroc Emploi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .job-posting {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 2rem; /* Space between job postings */
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text left inside the posting */
+        }
+        .header {
+            margin-bottom: 1rem;
+        }
+        .header h3 {
+            margin: 0;
+        }
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .job-detail {
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        .job-description {
+            display: none; /* Initially hidden */
+            margin: 1rem 0;
+        }
+        .show-description {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .show-description:hover {
+            color: #0056b3;
+        }
+        .phone-number {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .phone-number img {
+            max-width: 100px;
+            height: auto;
+        }
+        .phone-number p {
+            margin: 0;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+        @media (min-width: 600px) {
+            .phone-number img {
+                max-width: 180px;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 40px; /* Add a fixed width to the buttons */
+          height: 30px; /* Add a fixed height to the buttons */
+          line-height: 30px; /* Add a fixed line height to the buttons */
+          text-align: center; /* Center the text horizontally */
+        }
+        .pagination a:hover {
+            background: #0056b3;
+        }
+        .pagination .active {
+            background: #0056b3;
+            pointer-events: none;
+        }
+        .header-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            margin-right: 1rem;
+        }
+
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+        .footer-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            text-align: center;
+            clear: both;
+        }
+        .footer-section p {
+            margin: 0;
+        }
+        .job-detail .highlight {
+            color: green;
+        }
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            text-align: left;
+        }
+        .developer {
+            text-decoration: none;
+            text-color: darkorange;
+        }
+        .pagination .left {
+            width: 60px;
+            justify-content: left;
+        }
+        .pagination .right {
+            width: 60px;
+            justify-content: right;
+        }
+        .totaljobs {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+   <div class='header-section'>
+       <div class='header-text'>
+           <h1>Maroc Emploi</h1>
+           <p>L'emploi à votre portée, sans les complications!</p>
+       </div>
+   </div>
+    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
+    <div class='container'>
+
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>conducteur de travaux-métreur</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 12:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTI4NS02NTQ4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>JALOUAJA SARL</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>6 000 - 8 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 12:30</div>
+                         <p>nous somme une société spécialisé en géni civil nous recrutons un conducteur de travaux-métreur pour faire les taches suivantes : Estimer avec précision les couts, organiser  et superviser la réalisation des projets de construction , établir les mètre pour les attachements .</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Chargée du Marketing et développement Commercial</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 12:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIwMi0wOTAw' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>PREVAS </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 12:30</div>
+                         <p>PREVAS est un cabinet de conseil et courtage en assurance, leader de son secteur d'activité.<br />  <br />  Nous accompagnons principalement des grandes entreprises Marocaines et Multinationales dans le placement et la gestion de leurs programmes d'assurances.<br />  <br />  Avec une équipe de plus de 70 personnes et des bureaux à Casablanca, Tanger et Marrakech, PREVAS est à la recherche de nouveaux talents pour accompagner son développement et sa croissance.<br />  <br />  <br />  Description du poste : <br />  <br />  - Gérer les outils de prospection et suivi de la clientèle (Alimentation de la base des données CRM et suivi des actions commerciales).<br />  <br />  - Réaliser les opérations de Web marketing (Emailing, réseaux sociaux ... ).<br />  <br />  - Suivre la profitabilité des canaux de communication.<br />  <br />  Mission : <br />  <br />  - Développer de nouvelles stratégies et actions commerciales.<br />  <br />  - Promouvoir les ventes et la notoriété de l'entreprise.<br />  <br />  Compétences requises :<br />  <br />  - Aptitudes commerciales avérées et capacité à atteindre les objectifs de vente.<br />  <br />  - Excellentes capacités en communication verbale et écrite.<br />  <br />  - Sens de l'organisation, priorisation et suivi des objectifs.<br />  <br />  - Capacité à animer et coordonner les actions commerciales.<br />  <br />  - Esprit d'équipe et aisance dans le travail de groupe.<br />  <br />  - Capacité à gérer plusieurs projets et tâches simultanément.<br />  <br />  Formation et expérience :<br />  <br />  - Bac+4 minimum (Commerce, Marketing).<br />  <br />  - Expérience préalable dans un poste similaire au moins 2 ans.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Gestionnaire paye et gestion administrative</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Rabat </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-12:15</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDgwLTg2MS0xNzEw' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>MA AUDIT EXPERTISE</div>
+                         <div><strong>Location : </strong>Rabat </div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-12:15</div>
+                         Nous sommes un cabinet d’expertise comptable.<br>Le collaborateur sera amené à travailler uniquement sur des dossiers français.<br>Collaborateur comptable confirmé H/F :-	Niveau d’étude : Bac+2-5<br>-	Expérience : minimum 2 ans<br>Les principales missions :<br>-	Gestion de la paye,-	Traitement des déclarations sociales,<br>-	Administration du personnel (dpae, contrat, arrêt de travail…)<br>Rémunération selon profil.<br>Si vous êtes intéressés, merci d’envoyer votre CV et lettre de motivation par mail à :
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Collaborateur comptable</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Rabat </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-12:15</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDgwLTg2MS0xNzEw' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>MA AUDIT EXPERTISE</div>
+                         <div><strong>Location : </strong>Rabat </div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-12:15</div>
+                         Nous sommes un cabinet d’expertise comptable.<br>Le collaborateur sera amené à travailler uniquement sur des dossiers français.<br>Collaborateur comptable confirmé H/F :-	Niveau d’étude : bac+3/5<br>-	Expérience : minimum 2 ans dans des cabinets comptables<br>-	Les principales missions : <br>-Tenue comptable (lettrage, rapprochement bancaire…)<br>- Revue de saisie- Préparation du dossier de révision et bilan<br>- Saisie des écritures d’inventaires en fin d’année- Réalisation des déclarations fiscales (tva, Is…….)<br>Rémunération selon profil.<br>Si vous êtes intéressés, merci d’envoyer votre CV et lettre de motivation via ce site maroc annonces.
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Responsable maintenance </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 12:10</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTI4NS02NTQ4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>JALOUAJA SARL</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>6 000 - 8 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 12:10</div>
+                         <p>nous somme une société spécialisé en géni civil, nous recrutons un responsable maintenance ayons bac+3 avec une expérience plus de 5 ans dans le domaine de maintenance pour faire les tache suivantes planifie et élabore le planning de maintenance préventive et corrective des différents équipements les priorité et la sécurité <br />  organise les ressources de maintenance .<br />  Spécialité engin ( tractopelle , pelle hydraulique , chariot élévateur ..) <br />  <br />  <br />  géré les activités de maintenance   <br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Technicien d&#039;installation de boitiers GPS - Agadir</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Agadir</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 11:44</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUzLTkzNC0wNzM0' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>STG TELEMATICS</div>
+                         <div><strong>Location : </strong>Agadir</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 11:44</div>
+                         <p>Stgtelematics est le leader en gestion des flottes au maroc, offrant des solutions de télématique avancée pour améliorer la connectivité et l’efficacité des entreprises. nous sommes actuellement à la recherche d’un technicien d’installation gps qualifié pour rejoindre notre équipe à Agadir.description du poste :en tant que technicien d’installation gps, vous serez responsable de l’installation, de la configuration et du dépannage des systèmes gps dans les véhicules. vous jouerez un rôle clé dans la mise en place des solutions télématiques pour nos clients, en garantissant la qualité et la fiabilité des installations.responsabilités :• installer des boîtiers gps et leurs accessoires dans divers types de véhicules.• assurer le câblage et la connexion des circuits électriques des véhicules pour le bon fonctionnement des systèmes gps.• effectuer le diagnostic et la résolution des problèmes liés aux systèmes télématiques installés.• vérifier et tester les installations pour s’assurer de leur bon fonctionnement.• collaborer avec l’équipe technique pour améliorer les processus d’installation.exigences :• diplôme en diagnostic des véhicules ou dans un domaine connexe.• expérience d’au moins 3 ans dans l’installation de boîtiers gps, accessoires, et circuits électriques.• bonne connaissance des systèmes électriques des véhicules et des outils de diagnostic.• capacité à travailler de manière autonome et à respecter les délais.• sens du détail et engagement envers la qualité du travail fourni.• bonnes compétences en communication et capacité à travailler en équipe.qualifications :• connaissance approfondie des systèmes gps et des technologies télématiques.• capacité à lire et interpréter les schémas électriques des véhicules.• expérience dans l’utilisation d’outils de diagnostic de véhicules.• permis de conduire valide.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Aide comptable </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-11:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIzNS0xMzg5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>A discuter</div>
+                         <div><strong>Location : </strong>Casablanca </div>
+                         <div><strong>Salaire : </strong>Bac plus 3</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-11:30</div>
+                         Nous avons le plaisir d'annoncer une opportunité passionnante au sein de notre entreprise pour le poste d'Assistante Comptable, nous recherchons une personne dynamique et motivée pour rejoindre notre équipe de comptabilité à Casablanca Ain Sebaa.<br />  •	Missions Principales :<br />  •	Gestion des Documents Comptables :<br />  Saisie des pièces comptables (factures, notes de frais, etc.).<br />  Classement et archivage des documents.<br />  Préparation des états financiers périodiques.<br />  Suivi des Opérations Bancaires :<br />  Gestion des Factures et des Paiements :Traitement des factures fournisseurs et clients.<br />  Suivi des échéances de paiement.<br />  Préparation des règlements et des encaissements.<br />  Préparation des documents nécessaires pour les vérifications<br />  •	Compétences Techniques :<br />  Maîtrise des logiciels de comptabilité (Sage,).<br />  Connaissance des principes comptables et fiscaux.<br />  Capacité à effectuer des rapprochements bancaires et à préparer des déclarations fiscales.<br />  •	Compétences Organisationnelles :<br />  Capacité à gérer plusieurs tâches simultanément.<br />  Compétences en gestion du temps et en organisation des documents.<br />  •	 Compétences Interpersonnelles :<br />  Communication efficace avec les membres de l’équipe et les tiers.<br />  Discrétion et intégrité dans la gestion des informations sensibles..   Qualifications et Expérience<br />  •	Formation : Diplôme en comptabilité, gestion ou domaine similaire.<br />  •	 Expérience : Expérience préalable en comptabilité<br />  
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Ouvrier confection chaîne et trame</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 11:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI3NS0wMTg4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Groupe 2006</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 11:30</div>
+                         <p>Société de confection à Sidi Bernoussi (Sidi Moumen ) cherche : Ouvrier confection chaîne et trame<br>Expérience exigée.<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Agent De Qualité /Agent De Méthodes </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 11:25</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI3NS0wMTg4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Groupe 2006</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 11:25</div>
+                         <p>Société de confection à Sidi Bernoussi (Sidi Moumen ) cherche : Agent DeQualité /Agent DeMéthodes <br>Expérience exigée.<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Assistant commercial / assistante commerciale</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 11:15</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIzNS0xMzg5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>NF</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 11:15</div>
+                         <p>Nous sommes à la recherche d'un Assistant commercial / assistante commerciale pour notre société à Casablanca Ain Sebaa.<br />  Profil: <br />  bac+2 en commerce, finance et gestion d'entreprise .<br />  L'assistant aura les tâches suivants :<br />  <br />  -Etablir les devis, bons de livraison et factures<br />  -contact facile et le sens du service client<br />  -Assurer le suivi des commandes clients depuis la prise de la commande jusqu’à la livraison.<br />  <br />  Être disponible immédiatement.<br />  recrutement1234maroc@gmail.com</p>
+                     </div>
+                 </div>
+         
+<div class='pagination'>
+<a class='left' href='index.html'>« First</a>
+<a class='left' href='3.html'>« Prev</a>
+<a href='index.html'>1</a>
+<a href='2.html'>2</a>
+<a href='3.html'>3</a>
+<a href='4.html' class='active'>4</a>
+<a href='5.html'>5</a>
+<a href='6.html'>6</a>
+<a href='7.html'>7</a>
+<a href='8.html'>8</a>
+<a href='9.html'>9</a>
+<a href='10.html'>10</a>
+<a class='right'  href='5.html'>Next »</a>
+<a class='right'  href='10.html'>Last »</a>
+</div>
+
+</div>
+
+   <div class='footer-section'>
+       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
+       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
+       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
+   </div>
+    <script>
+        function toggleDescription(element) {
+            var description = element.nextElementSibling;
+            var isVisible = description.style.display === 'block';
+            description.style.display = isVisible ? 'none' : 'block';
+            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

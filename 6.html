@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<!-- Métadonnées SEO -->
+<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
+<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
+<meta name='author' content='Otmane Echaibi'>
+<meta property='og:title' content='Offres d'emploi au Maroc'>
+<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
+<meta property='og:image' content='logo.png'>
+<meta property='og:url' content='https://example.com'>
+
+<!-- Favicon -->
+<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
+
+<!-- Polices et icônes -->
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
+
+    <title>Maroc Emploi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .job-posting {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 2rem; /* Space between job postings */
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text left inside the posting */
+        }
+        .header {
+            margin-bottom: 1rem;
+        }
+        .header h3 {
+            margin: 0;
+        }
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .job-detail {
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        .job-description {
+            display: none; /* Initially hidden */
+            margin: 1rem 0;
+        }
+        .show-description {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .show-description:hover {
+            color: #0056b3;
+        }
+        .phone-number {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .phone-number img {
+            max-width: 100px;
+            height: auto;
+        }
+        .phone-number p {
+            margin: 0;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+        @media (min-width: 600px) {
+            .phone-number img {
+                max-width: 180px;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 40px; /* Add a fixed width to the buttons */
+          height: 30px; /* Add a fixed height to the buttons */
+          line-height: 30px; /* Add a fixed line height to the buttons */
+          text-align: center; /* Center the text horizontally */
+        }
+        .pagination a:hover {
+            background: #0056b3;
+        }
+        .pagination .active {
+            background: #0056b3;
+            pointer-events: none;
+        }
+        .header-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            margin-right: 1rem;
+        }
+
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+        .footer-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            text-align: center;
+            clear: both;
+        }
+        .footer-section p {
+            margin: 0;
+        }
+        .job-detail .highlight {
+            color: green;
+        }
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            text-align: left;
+        }
+        .developer {
+            text-decoration: none;
+            text-color: darkorange;
+        }
+        .pagination .left {
+            width: 60px;
+            justify-content: left;
+        }
+        .pagination .right {
+            width: 60px;
+            justify-content: right;
+        }
+        .totaljobs {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+   <div class='header-section'>
+       <div class='header-text'>
+           <h1>Maroc Emploi</h1>
+           <p>L'emploi à votre portée, sans les complications!</p>
+       </div>
+   </div>
+    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
+    <div class='container'>
+
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Maitresses d'arabe et de français</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:55</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDYwLTE2Ny0wODA1' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>École primaire </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:55</div>
+                         <p>École à Ain choc recrute des maîtresses D'ARABE ET DE FRANÇAIS.<br />  Une bonne expérience est nécessaire.<br />  Prière de nous contacter </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Vendeurs(ses) expérimenté(e)s à Rabat</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Rabat</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:51</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTQxMi0yNTI1' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>PJ</div>
+                         <div><strong>Location : </strong>Rabat</div>
+                         <div><strong>Salaire : </strong>2 000 - 3 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:51</div>
+                         <p>Nous sommes à la recherche des vendeuses en magasin des articles de décoration.<br />  Votre mission:- Organiser la marchandise dans le magasin- Aider et conseiller la clientèle à la recherche du vêtement qu’elle cherche- Vendre les articles et enregistrer le paiement à la caisse- Vérifier l’état de propreté et l’ordre dans le magasin- Gérer les retours et les échanges de marchandise- Gérer les activités d’ouverture et de fermeture du magasin</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Vendeurs terrain avec moto</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:51</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTQxMi0yNTI1' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>PJ</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:51</div>
+                         <p>Nous sommes à la recherche des vendeurs terrain motorisés, détail au circuit traditionnel à Casablanca expérience dans le domaine agroalimentaire exigée.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Responsable magasin Rabat</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:51</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE1OS05Nzcz' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Pj</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>Plus de 10 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:51</div>
+                         <p>Dans le cadre de son Développement, notre client recrute un Responsables de Magasin de vente<br />  <br />  Missions :<br />  <br />  Véritable garant de la gestion d’un centre de profit, vos principales missions sont :<br />  <br />  - Animer l’ensemble des activités du magasin, déterminer et appliquer la politique commerciale en supervisant et en coordonnant les actions avec les différents interlocuteurs internes et externes.<br />  <br />  - Contrôler avec les chefs de départements les gammes de produits en quantité et en qualité.<br />  <br />  - Mettre en place et développer les actions de promotion et de publicité définies par la direction générale.<br />  <br />  - Veiller à la réalisation des objectifs fixés à travers une approche commerciale proactive et à travers la satisfaction clients.<br />  <br />  - Manager et développer les compétences de son équipe.<br />  <br />  - Suivre à travers des reportings, l’évolution des objectifs en matière de chiffre d’affaire et de marges bénéficiaires, fréquentation, rotation de stocks…<br />  <br />  De formation supérieure Bac+4/5 en gestion/ commerce / marketing...<br />  <br />  - Homme de terrain, vous justifiez d'une expérience confirmée de 7 minimum dans la gestion commerciale ou la gestion d’un centre de profit. Une expérience dans la gestion d’une grande surface de vente est un atout considérable.<br />  <br />  - Bon gestionnaire, vous avez géré des équipes de + de 30 personnes et vous êtes reconnu(e) pour vos qualités managériales et votre leadership.<br />  <br />  - Vous êtes attiré(e) par les challenges et la convivialité d'un groupe dynamique et efficace.<br />  <br />  - Vous avez une capacité d’écoute, de communication et un excellent relationnel.<br />  <br />  - Vous avez une forte capacité de persuasion, de négociation et force de conviction.<br />  <br />  - Forte disponibilité et implication dans le processus de gestion.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Aide livreur Shift de nuit à Lissasfa</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:51</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTQxMi0yNTI1' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>PJ</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>2 000 - 3 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:51</div>
+                         <p>Nous sommes à la recherche pour notre client spécialisé dans la distribution des marchandises, des aides livreurs et une première expérience dans la grande distribution. Les candidats ayant une moto ont plus de chance.<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>des assistantes commercial et pédagogique </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:50</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE2NS0wMzM2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>centre de langues</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>3 000 - 4 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:50</div>
+                         <p>  Notre centre de langues en plein centre-ville de casablanca, spécialisée dans l'enseignement de diverses langues à un public diversifié. nous offrons des cours de qualité pour adultes, enfants et entreprises, adaptés à différents niveaux de compétence nous recrutons des assistantes commercial   et pédagogique  ces missions principales et :<br />  -la prospection téléphonique .   <br />   - :** répondre aux demandes de renseignements des clients a fin de le faire opter a notre service .<br />  - **suivi des dossiers clients : assurer le suivi pédagogique ,et des inscriptions ..<br />  - **relation client : assurer une communication fluide et professionnelle avec les clients pour garantir leur satisfaction et fidélisation.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>RH</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:45</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI3NS0wMTg4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Groupe 2006</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:45</div>
+                         <p>Société de confection à Sidi Bernoussi (Sidi Moumen ) cherche : RH<br>Expérience exigée.<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Gestionnaire de Stock</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:45</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI3NS0wMTg4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Groupe 2006</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:45</div>
+                         <p>Société de confection à Sidi Bernoussi (Sidi Moumen ) cherche : Gestionnaire de Stock <br>Expérience exigée.<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Ingénieur Génie Civil - Strcuture</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Temara</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:39</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUzLTc0MS0wMjIw' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>INGENIERIE.COM</div>
+                         <div><strong>Location : </strong>Temara</div>
+                         <div><strong>Salaire : </strong>6 000 - 8 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:39</div>
+                         <p><br />  <br />  **Description du poste :**<br />  Nous recherchons un ingénieur débutant en génie civil, spécialisé dans le calcul des pylônes et charpentes métalliques, pour rejoindre notre équipe dynamique. Le candidat idéal sera passionné par les structures et possédera une solide base théorique et pratique en conception et calcul de structures.<br />  <br />  **Responsabilités :**<br />  - Réaliser des études et des calculs de structures, principalement pour des pylônes et des charpentes métalliques.<br />  - Collaborer avec les équipes de conception pour assurer la conformité des projets aux normes et aux spécifications techniques.<br />  - Participer à l'élaboration des plans d'exécution.<br />  - Assurer la coordination technique avec les différents intervenants du projet.<br />  - Effectuer des analyses statiques et dynamiques des structures.<br />  <br />  **Compétences requises :**<br />  - Diplôme d'ingénieur en génie civil ou équivalent.<br />  - Connaissance des principes de calculs de structures métalliques, notamment pour les pylônes et charpentes.<br />  - Une première expérience dans un poste similaire serait un atout, mais les profils débutants sont encouragés à postuler.<br />  - Maîtrise des logiciels de calcul et modélisation de structures : **TEKLA, REVIT, ROBOT** (un atout majeur).<br />  - Connaissance des normes et règlements en vigueur dans le domaine des structures.<br />  <br />  **Qualités personnelles :**<br />  - Rigueur et précision dans le travail.<br />  - Bon esprit d'équipe et capacité à communiquer efficacement.<br />  - Autonomie et capacité à gérer plusieurs tâches simultanément.<br />  <br />  **Avantages :**<br />  - Environnement de travail stimulant et collaboratif.<br />  - Opportunités de développement professionnel et de formation continue.<br />  - Rémunération compétitive en fonction de l'expérience et des compétences.<br />  <br />  Si vous êtes un ingénieur motivé par les défis techniques dans le domaine des structures métalliques et que vous souhaitez évoluer dans une entreprise innovante, n'hésitez pas à postuler !</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Technicien de test / réparation</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 09:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI5Ny00Mjg2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>OB ELECTRONIQUE</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 09:30</div>
+                         <p>Partenaire du groupe industriel franco-marocain Selha Group, OB Electronique est une entreprise marocaine spécialisée dans la fabrication et l’intégration d’équipements électroniques de pointe.<br />  > Recrute des techniciens Tests / Réparation<br />  > Mission :<br />  <br />  > • S’assurer de la conformité du produit lors de la première mise en production par rapport aux spécifications du cahier des charges clients et/ou internes en réalisant le test des cartes / ensembles électroniques à l’aide des moyens de test<br />  > • Réparation des cartes Electroniques<br />  > • Résoudre les anomalies du fonctionnement des produits / équipements détectées lors de la phase de tests<br />  > • Adapter les programmes selon les évolutions techniques issues des fiches de modifications et s’assurer de leurs applications<br />  > • Procéder à l’installation interne ou externe des moyens de test<br />  > • Assurer la gestion des moyens mis à disposition par le client (suivi périodique des interfaces et des bancs…)<br />  > • Diagnostiquer les défaillances de fonctionnement du produit et analyser leurs conséquences (production, SAV, retours, prestations…)<br />  > • Rédiger le rapport d’expertise synthétisant la démarche de résolution de problème de la défaillance constatée<br />  <br />  > FORMATION :<br />  > BAC+2/3  Electronique  et informatique industrielle DUT<br />  > EXPERIENCE :2 ans d'expérience minimum dans un poste similaire.</p>
+                     </div>
+                 </div>
+         
+<div class='pagination'>
+<a class='left' href='index.html'>« First</a>
+<a class='left' href='5.html'>« Prev</a>
+<a href='index.html'>1</a>
+<a href='2.html'>2</a>
+<a href='3.html'>3</a>
+<a href='4.html'>4</a>
+<a href='5.html'>5</a>
+<a href='6.html' class='active'>6</a>
+<a href='7.html'>7</a>
+<a href='8.html'>8</a>
+<a href='9.html'>9</a>
+<a href='10.html'>10</a>
+<a class='right'  href='7.html'>Next »</a>
+<a class='right'  href='10.html'>Last »</a>
+</div>
+
+</div>
+
+   <div class='footer-section'>
+       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
+       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
+       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
+   </div>
+    <script>
+        function toggleDescription(element) {
+            var description = element.nextElementSibling;
+            var isVisible = description.style.display === 'block';
+            description.style.display = isVisible ? 'none' : 'block';
+            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

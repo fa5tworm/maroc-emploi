@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<!-- Métadonnées SEO -->
+<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
+<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
+<meta name='author' content='Otmane Echaibi'>
+<meta property='og:title' content='Offres d'emploi au Maroc'>
+<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
+<meta property='og:image' content='logo.png'>
+<meta property='og:url' content='https://example.com'>
+
+<!-- Favicon -->
+<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
+
+<!-- Polices et icônes -->
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
+
+    <title>Maroc Emploi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .job-posting {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 2rem; /* Space between job postings */
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text left inside the posting */
+        }
+        .header {
+            margin-bottom: 1rem;
+        }
+        .header h3 {
+            margin: 0;
+        }
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .job-detail {
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        .job-description {
+            display: none; /* Initially hidden */
+            margin: 1rem 0;
+        }
+        .show-description {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .show-description:hover {
+            color: #0056b3;
+        }
+        .phone-number {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .phone-number img {
+            max-width: 100px;
+            height: auto;
+        }
+        .phone-number p {
+            margin: 0;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+        @media (min-width: 600px) {
+            .phone-number img {
+                max-width: 180px;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 40px; /* Add a fixed width to the buttons */
+          height: 30px; /* Add a fixed height to the buttons */
+          line-height: 30px; /* Add a fixed line height to the buttons */
+          text-align: center; /* Center the text horizontally */
+        }
+        .pagination a:hover {
+            background: #0056b3;
+        }
+        .pagination .active {
+            background: #0056b3;
+            pointer-events: none;
+        }
+        .header-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            margin-right: 1rem;
+        }
+
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+        .footer-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            text-align: center;
+            clear: both;
+        }
+        .footer-section p {
+            margin: 0;
+        }
+        .job-detail .highlight {
+            color: green;
+        }
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            text-align: left;
+        }
+        .developer {
+            text-decoration: none;
+            text-color: darkorange;
+        }
+        .pagination .left {
+            width: 60px;
+            justify-content: left;
+        }
+        .pagination .right {
+            width: 60px;
+            justify-content: right;
+        }
+        .totaljobs {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+   <div class='header-section'>
+       <div class='header-text'>
+           <h1>Maroc Emploi</h1>
+           <p>L'emploi à votre portée, sans les complications!</p>
+       </div>
+   </div>
+    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
+    <div class='container'>
+
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>secrétaire comptable /Comptable</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-17 01:25</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE4NC02MjI5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>FIDUCIAIRE</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>3 000 - 4 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-17 01:25</div>
+                         <p>cabinet comptable l'état situe à Maarif extention . Cherche  pour les postes  de secrétaire comptable et comptable polyvalent expérience dans les fiduciaires exigé ( 3 ans et plus )<br />  Veuillez nous envoyer vos CV  par mail ou nous contacter  pour un entretien </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>centre recrut une Assistante de direction </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Kénitra</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 23:25</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE2NS0wMzM2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>institut de formation et langues </div>
+                         <div><strong>Location : </strong>Kénitra</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 23:25</div>
+                         <p>Notre centre de langues en plein centre-ville de  KENITRA, spécialisée dans l'enseignement de diverses langues à un public diversifié. Nous offrons des cours de qualité pour adultes, enfants et entreprises, adaptés à différents niveaux de compétence nous recrutons une Assistante de direction et Commerciale ces Missions principales et :<br />  - la Gestion des appels entrants et sortants :** Répondre aux demandes de renseignements des clients et les orienter vers les services appropriés.<br />  - **Suivi des dossiers clients : Assurer le suivi administratif des dossiers, des inscriptions aux cours et des paiements.<br />  - **Support administratif : Aider dans la préparation de documents commerciaux, la gestion des plannings, et l'organisation des réunions.<br />  - **Relation client : Assurer une communication fluide et professionnelle avec les clients pour garantir leur satisfaction et fidélisation.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>recrutons des formateurs (rices) de Langues ...</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Tanger</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 22:35</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE2Ny0xNDM5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>institut de formation et langues </div>
+                         <div><strong>Location : </strong>Tanger</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 22:35</div>
+                         <p>Notre centre de langues en plein centre-ville de Tanger, spécialisée dans l'enseignement de diverses langues à un public diversifié. Nous offrons des cours de qualité pour adultes, enfants et entreprises, adaptés à différents niveaux de compétence nous recrutons des formateurs (rices) de Langues (Français, Anglais, Espagnol, etc.) qualifiés et passionnés pour des postes vacataires pour rejoindre notre équipe dynamique. Vous aurez l'opportunité de transmettre vos connaissances à un public diversifié et de contribuer à leur succès linguistique.<br />  *Profil recherché :<br />  - Parfaite maîtrise de la langue enseignée, avec une préférence pour les locuteurs natifs.<br />  - Expérience préalable en tant que formateur ou enseignant.<br />  - Capacité à adapter les cours en fonction du niveau et des objectifs des apprenants.<br />  - Excellentes compétences en communication et pédagogie.<br />  Conditions :<br />  - Poste à temps plein ou partiel, avec possibilité d'interventions en présentiel ou en ligne.<br />  - Rémunération attractive en fonction de l'expérience et des <br />  Envoyez votre CV  à [adresse e-mail] en précisant la langue que vous souhaitez enseigner. Nous avons hâte de découvrir votre<br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3> Tanger centre recrut une Assistante de direction </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Tanger</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 22:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE2NS0wMzM2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>institut de formation et langues </div>
+                         <div><strong>Location : </strong>Tanger</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 22:30</div>
+                         <p>Notre centre de langues en plein centre-ville de Tanger, spécialisée dans l'enseignement de diverses langues à un public diversifié. Nous offrons des cours de qualité pour adultes, enfants et entreprises, adaptés à différents niveaux de compétence nous recrutons une Assistante de direction et Commerciale ces Missions principales et :<br />  - la Gestion des appels entrants et sortants :** Répondre aux demandes de renseignements des clients et les orienter vers les services appropriés.<br />  - **Suivi des dossiers clients : Assurer le suivi administratif des dossiers, des inscriptions aux cours et des paiements.<br />  - **Support administratif : Aider dans la préparation de documents commerciaux, la gestion des plannings, et l'organisation des réunions.<br />  - **Relation client : Assurer une communication fluide et professionnelle avec les clients pour garantir leur satisfaction et fidélisation.<br />  - **Collaboration avec l’équipe pédagogique :** Travailler en étroite collaboration avec les enseignants pour organiser les cours et répondre aux besoins spécifiques des étudiants.<br />  **Profil recherché :**<br />  - **Formation :** Bac + 3 en commerce, gestion ou un domaine similaire.<br />  - **Expérience :** 2 ans d’expérience dans un poste similaire, de préférence dans le secteur de la formation ou des services.<br />  - **Compétences :**<br />    - Excellente communication orale et écrite.<br />    - Maîtrise des outils bureautiques (Word, Excel, PowerPoint).<br />    - Capacités d'organisation et de gestion du temps.<br />    - Aptitude à travailler en équipe et à gérer plusieurs tâches simultanément.<br />  - **Langues : ** Maîtrise parfaite du français ou anglais, la connaissance d’une ou plusieurs langues étrangères est un plus.<br />  **Avantages :**<br />  - **Ambiance de travail agréable** dans une équipe dynamique.<br />  - **Opportunités de formation** continue pour développer vos compétences.<br />  - **Participation aux activités** du centre (ateliers linguistiques, événements culturels, etc.).<br />  Nous sommes impatients de découvrir votre profil et d'éch</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Infirmière </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 21:57</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=NjA3MDU1Mjk5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Mariem</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 21:57</div>
+                         <p>Nous sommes à la recherche des infirmières de travail au profit de notre client basé sur la ville casablanca.<br />  <br />  une expérience dans un poste similaire est souhaitable.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Comptable confirmé</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 21:47</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTMwNS0zMTYy' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>confidentiel</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 21:47</div>
+                         <p>Nous sommes un cabinet d'expertise comptable et de commissariat aux comptes sis à Sidi Maarouf, Casablanca, nous cherchons un comptable confirmée avec une expérience de 2 ans minimum au sein d'un cabinet comptable et ce pour assurer la supervision, la tenue et des missions d'audit de certains de nos clients. intéressés, merci de nous envoyer vos CV par mail</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Technicien frigoriste (Casablanca - Rabat -Tanger)</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 18:40</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTYwMy0yNzk4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Stay Here</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 18:40</div>
+                         <p>Stayhere, chaine hôtelière moderne recrute pour ces sites à Casablanca, Rabat et Tanger des techniciens Frigoriste pour les missions suivantes:<br />  <br />  - Installation des systèmes CVC<br />  - Maintenance préventive et corrective<br />  - Régulation et optimisation des installations<br />  - Mise en service et tests<br />  - Diagnostic et réparation<br />  - Documentation et reporting<br />  - Respect des normes et réglementations<br />  <br />  <br />  Soft skills et aptitudes requises :<br />  <br />  - Gestion du Temps<br />  - Travail en Équipe<br />  - Flexibilité et Adaptabilité<br />  - Organisation<br />  - Communication<br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Agent de Securité (Casablanca - Rabat - Tanger)</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 18:35</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTYwMy0yNzk4' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Stay Here</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 18:35</div>
+                         <p>Responsabilités :<br />  <br />  - Surveillance.<br />  - Réponse aux situations d'urgence.<br />  - Assistance aux personnes.<br />  - Maintien de l'ordre et du calme.<br />  - Collaboration avec les autorités.<br />  <br />  <br />  Compétences requises :<br />  <br />  - Compétences en communication et en relations interpersonnelles.<br />  - Capacité à rester calme et à prendre des décisions rapides dans des situations stressantes.<br />  - Connaissance des protocoles de sécurité et des procédures d'urgence.<br />  - Capacité à travailler de manière autonome et en équipe.<br />  - Respect des normes d'éthique et de confidentialité.<br />  <br />  Formation et qualifications :<br />  <br />  - Niveau d'études : Niveau Bac.<br />  - Expérience d'au moins 1 an dans le domaine.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>COMMERCIAL export B TO B</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Marrakech</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:50</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTc2NC0wNzMx' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>LB</div>
+                         <div><strong>Location : </strong>Marrakech</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:50</div>
+                         <p>Nous recrutons sur notre boite à Marrakech <br><br /> Poste commercial export, De formation supérieure en commerce international, vous avez cumulé une expérience solide de minimum 3 ans dans un poste similaire<br><br /> Vous maîtrisez parfaitement le français et l'anglais, votre approche est basée sur la satisfaction client, vous avez un bon relationnel et un bon sens de négociation. Motivé et dynamique pour rejoindre notre entreprise.<br><br /> Activités principales :<br><br /> Développement des ventes à l’export<br><br /> Prospection et sélection des nouveaux marchés<br><br /> Négociation et vente à l’export et Promouvoir l’image de marque;<br><br /> Suivi des règlements ;<br><br /> Préparer un reporting hebdomadaire de l’activité commerciale<br><br /> Supervision des inspections, des chargements et des expéditions des marchandises exportées.<br><br /> Capacité de travailler sous pression et à atteindre les objectifs.<br><br /> Si vous êtes ambitieux merci de m'envoyer votre cvPoste Disponible immédiatement<br></p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Comptable</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-17:50</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIyNS0wMjI2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>CLAES MEDICAL SERVICE</div>
+                         <div><strong>Location : </strong>Casablanca </div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-17:50</div>
+                         Activités principales de la fonction<br><br><br /> Comptabilité<br><br><br /> Archivage physique des documents comptables ;<br><br /> Enregistrement comptable des pièces par journal (achat, banque, caisse, import, …etc) ;<br><br /> Lettrage et analyse des comptes ;<br><br /> Établissement de l’état de rapprochement bancaire ;<br><br /> Prise en charge une partie des écritures d’inventaires de fin d’année pour préparer les états financiers : provisions, amortissement, régularisation des charges et produits, …etc ;<br><br /> Application des procédures comptables de la société ;<br><br /> Aider le chef comptable dans ses tâches ;<br><br /> Aide au niveau de la préparation des clôtures périodiques comptables.<br><br /> Fiscalité<br><br><br /> Établissement des déclarations fiscales courantes (TVA, IR, …) ;<br><br /> Aider le chef comptable dans la préparation des autres déclarations ;<br><br /> Trésorerie<br><br><br /> Etablir l’état de rapprochement bancaire ;<br><br><br /> Comptabiliser la caisse ;<br><br><br /> 3.	Indicateurs de performances<br><br><br /> Fiabilité des comptes mesurée par le nombre de remarques et/ou anomalies soulevées lors de la revue des comptes par le chef comptable et le cabinet externe ;<br><br><br /> Exactitude des déclarations fiscales et dépôt dans les délais ;<br><br><br /> Nombre de tableaux de bord et reporting communiqués à la Direction Générale dans les délais.<br><br><br /> Profil<br><br><br /> Diplômes requis<br><br /> Licence universitaire en comptabilité<br><br /> Master en Comptabilité-Contrôle-Audit (CCA)<br><br /> Diplôme d’une école de commerce<br><br /> <br><br /> Compétences techniques<br><br /> Connaissance approfondie de la comptabilité générale <br><br /> Connaissance approfondie des règles fiscales <br><br /> Compétence en analyse de données<br><br /> Bonne connaissance des métiers et du fonctionnement de l’entreprise<br><br /> Durée d’expérience<br><br /> <br><br /> Une expérience de 3 années minimum en tant que comptable en cabinet ou bien 4 années minimum en tant que comptable confirmé en entreprise.<br><br /> Qualités humaines et aptitudes<br><br /> Intégrité et discrétion.<br><br /> Disponibilité et forte capacité de travail.<br><br /> Capacité d’organisation et de planification.
+                     </div>
+                 </div>
+         
+<div class='pagination'>
+<!-- <a href='#'>« First</a> -->
+<!-- <a href='#'>« Prev</a> -->
+<a href='1.html' class='active'>1</a>
+<a href='2.html'>2</a>
+<a href='3.html'>3</a>
+<a href='4.html'>4</a>
+<a href='5.html'>5</a>
+<a href='6.html'>6</a>
+<a href='7.html'>7</a>
+<a href='8.html'>8</a>
+<a href='9.html'>9</a>
+<a href='10.html'>10</a>
+<a class='right'  href='2.html'>Next »</a>
+<a class='right'  href='10.html'>Last »</a>
+</div>
+
+</div>
+
+   <div class='footer-section'>
+       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
+       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
+       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
+   </div>
+    <script>
+        function toggleDescription(element) {
+            var description = element.nextElementSibling;
+            var isVisible = description.style.display === 'block';
+            description.style.display = isVisible ? 'none' : 'block';
+            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

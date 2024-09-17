@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<!-- Métadonnées SEO -->
+<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
+<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
+<meta name='author' content='Otmane Echaibi'>
+<meta property='og:title' content='Offres d'emploi au Maroc'>
+<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
+<meta property='og:image' content='logo.png'>
+<meta property='og:url' content='https://example.com'>
+
+<!-- Favicon -->
+<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
+
+<!-- Polices et icônes -->
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
+
+    <title>Maroc Emploi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .job-posting {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 2rem; /* Space between job postings */
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text left inside the posting */
+        }
+        .header {
+            margin-bottom: 1rem;
+        }
+        .header h3 {
+            margin: 0;
+        }
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .job-detail {
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        .job-description {
+            display: none; /* Initially hidden */
+            margin: 1rem 0;
+        }
+        .show-description {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .show-description:hover {
+            color: #0056b3;
+        }
+        .phone-number {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .phone-number img {
+            max-width: 100px;
+            height: auto;
+        }
+        .phone-number p {
+            margin: 0;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+        @media (min-width: 600px) {
+            .phone-number img {
+                max-width: 180px;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 40px; /* Add a fixed width to the buttons */
+          height: 30px; /* Add a fixed height to the buttons */
+          line-height: 30px; /* Add a fixed line height to the buttons */
+          text-align: center; /* Center the text horizontally */
+        }
+        .pagination a:hover {
+            background: #0056b3;
+        }
+        .pagination .active {
+            background: #0056b3;
+            pointer-events: none;
+        }
+        .header-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            margin-right: 1rem;
+        }
+
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+        .footer-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            text-align: center;
+            clear: both;
+        }
+        .footer-section p {
+            margin: 0;
+        }
+        .job-detail .highlight {
+            color: green;
+        }
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            text-align: left;
+        }
+        .developer {
+            text-decoration: none;
+            text-color: darkorange;
+        }
+        .pagination .left {
+            width: 60px;
+            justify-content: left;
+        }
+        .pagination .right {
+            width: 60px;
+            justify-content: right;
+        }
+        .totaljobs {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+   <div class='header-section'>
+       <div class='header-text'>
+           <h1>Maroc Emploi</h1>
+           <p>L'emploi à votre portée, sans les complications!</p>
+       </div>
+   </div>
+    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
+    <div class='container'>
+
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>COMPTABLE</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:45</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI4OS00OTQ5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Hotel</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:45</div>
+                         <p>Nous recrutons pour le compte d'un hotel a casablanca sidi maarouf un comptable confirmé avec minimum 10 ans d'experience.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>COORDINATRICE OPERATIONNEL</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-17:40</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI2NC05OTk5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>NEWREST MAROC SERVICES</div>
+                         <div><strong>Location : </strong>Casablanca </div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-17:40</div>
+                         Entreprise Filiale d’un Groupe Français, Newrest Maroc Service est Leader dans son secteur d’activité.<br />  Nous sommes spécialisés dans la restauration des transports (compagnies aériennes, ferroviaires et maritimes), la restauration de concession et la restauration collective.<br />  Nous avons une clientèle diversifiée à savoir : les Collectivités, les Administrations et les Entreprises. <br />  Nous recrutons aujourd’hui une COORDINATRICE OPERATIONNEL.<br />  Rattaché au DGA en charge des opérations, votre mission consiste à :<br />  <br />  •	Assurer la gestion administrative, <br />  •	Préparer les Reportings et plan d’actions <br />  •	Consolider les données opérationnelles<br />  •	Assister votre hiérarchie dans l’accomplissement de ses responsabilités.<br />  <br />  <br />  Diplôme d'études Bac + 4 et plus en gestion, finance ou contrôle de gestion<br />  Maitrise de la langue française<br />  Maitrise de l’Anglais<br />  Maitrise de Microsoft <br />  Excellentes compétences organisationnelles et capacité à gérer plusieurs tâches simultanément.<br />  Fortes compétences en communication écrite et verbale.<br />  
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Recrutement des Profs pour le niveau collégial </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Tanger</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE5MC01NDE3' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>École </div>
+                         <div><strong>Location : </strong>Tanger</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:30</div>
+                         <p>Une école à Tanger cherche à recruter des profs(femmes)a enseigner pour le niveau collégial dans les matières suivantes,:<br />  Mathématique /PC/SVT/français <br />  التربية الإسلامية <br />  Les conditions de pré-embauche,:<br />  #L'expérience et spécialité #<br />  Si vous êtes intéressé à ce poste veuillez nous envoyer votre CV sur WhatsApp au numéro suivant 0661905417</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Ingénieur Biomédical </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  16 Sep-17:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIyNS0wMjI2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>CLAES MEDICAL SERVICE</div>
+                         <div><strong>Location : </strong>Casablanca </div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong> 16 Sep-17:30</div>
+                         Partenaire d’acteurs majeurs de la santé au niveau mondial, Claes Médical Service se positionne comme leader dans la distribution d’équipements médicaux, de laboratoires et de consommables au Maroc depuis plus de 38 ans. <br />  <br />  Nous représentons exclusivement des entreprises internationales qui sont leaders dans la fabrication d’équipements du bloc opératoire, de réanimation, de cardiologie, d’orthopédie, de stérilisation et neurologie.  <br />  <br />  Notre société met à la disposition de nos clients une équipe commerciale professionnelle et experte pour répondre aux besoins variés de nos clients : ministère de la santé (centre hospitalier universitaire, hôpitaux de province, centre spécialisé…), direction de l’équipement médical, polycliniques de la CNSS, hôpitaux militaires, cliniques et cabinets privés. <br />  <br />  Rejoignez dès à présent notre groupe à taille humaine et participez à nos côtés à notre croissance en tant qu’ingénieur biomédical :<br />  <br />  Missions : <br />  <br />  •	Maintenance et Installation des équipements du bloc opératoire : <br />  o	Respirateur d’anesthésie<br />  o	Bistouri électrique <br />  o	Autoclave<br />  o	Eclairage opératoire <br />  o	Colonne d’endoscopie  <br />  o	Moniteur multi paramètre <br />  o	Tables d’opérations <br />  o	Moteurs orthopédiques <br />  <br />  •	Maintenance et Installation des équipements de réanimation <br />  o	Respirateur de Réanimation<br />  o	Couveuse <br />  o	Table chauffante<br />  o	Pousse seringue et pompe à perfusion <br />  o	Moniteur multi paramètre et centrale <br />  o	Lits de réanimation <br />  <br />  <br />  •	Maintenance et Installation des équipements de cardiologie<br />  o	ECG<br />  o	Epreuve d’effort <br />  o	Défibrillateur <br />  <br />  •	Maintenance et Installation des centrales de stérilisation<br />  <br />  •	Maintenance et Installations des équipements de fluides médicaux<br />  <br />  •	Maintenance et Installation des amplificateurs de brillance <br />  <br />  <br />  Profil recherché <br />  •	De formation scientifique idéalement ingénieur, (maîtrise en  biomédical (MST) ou maîtrise en électronique/ mater en biomédical), BAC+ 4/5<br />  •	Vous avez acquis une expérience confirmée de 4 années au minim
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Chef de produit ADV</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIyNS0wMjI2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>CLAES MEDICAL SERVICE</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:30</div>
+                         <p>Bac +3 min en biomédical doté de +3 ans min d’expérience en tant que chef de produit back office, de préférence dans le secteur médical ou secteur similaire<br />  <br />  Organisé(e), Persévèrent(e), Doté(e) du Sens de communication & de Collaboration, Maîtrisant le Français et l’Anglais .<br />  <br />  Votre fonction consiste à Développer le portefeuille Produit de votre gamme dans le respect des objectifs de chiffre d'affaires et marge brute<br />  <br />  Vous veillerez à :<br />  <br />  - Développer votre gamme de produit dans le respect des objectifs de chiffre d’affaires et de marge brute<br />  <br />  - Assurer la Veille des nouvelles opportunités<br />  <br />  - Préparer les offres par anticipation de l’avance technologique, de la concurrence et du besoin client<br />  <br />  - Analyser le CPS et étudier la faisabilité du besoin client<br />  <br />  - Traiter avec le Fournisseur pour l’offre optimisée en Budget, Configuration technique et Délai<br />  <br />  - Préparer les Offres Techniques et Financières en conformité avec le CPS client<br />  <br />  - Assurer la veille des résultats de soumission des offres<br />  <br />  - Analyser & Améliorer les indicateurs de Performance de votre gamme de produit</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Offre d&#039;emploi :Designer/Infographiste,Media Buyer</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:20</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTM1My0xNTk1' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>SAHARA MOBILIER</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:20</div>
+                         <p>Description du poste :<br />  <br />  Nous recherchons des professionnel(le) polyvalent(e) et dynamique pour rejoindre notre équipe en tant que Designer/Infographiste, Media Buyer & Account Manager. Vous serez  responsable de la création de visuels attrayants, de la gestion des campagnes publicitaires numériques et de la gestion des relations clients. Vous jouerez un rôle clé dans la réussite de nos projets marketing et publicitaires en assurant la cohérence entre la stratégie créative, l'exécution des campagnes et la satisfaction des clients<br />  <br />  1er poste  => Designer/infographiste<br />  <br />  -Créer des visuels(vidéo photo..) pour les campagnes publicitaires, sites web, réseaux sociaux,...<br />  -Collaborer avec les équipes internes pour développer des concepts créatifs qui répondent aux besoins marketing.<br />  -Maintenir une cohérence visuelle de la marque sur tous les supports de communication.<br />    <br />  2eme poste =>Media Buyer<br />  <br />  -Planifier, acheter et gérer des espaces publicitaires sur des plateformes numériques (Facebook Ads, Google Ads, Tiktok Ads etc.).<br />  -Analyser les performances des campagnes et ajuster les stratégies pour maximiser le retour sur investissement (ROI).<br />  -Surveiller les tendances du marché et identifier les meilleures opportunités d'achat média.<br />   <br />  3eme poste =>Account manager <br />  <br />  -Gérer les relations avec les clients,<br />  gestion des réseaux sociaux<br />  Comprendre les besoins et objectifs des clients pour les traduire en stratégies efficaces.<br />  Assurer la coordination des projets du début à la fin, en respectant les délais et les budgets.<br />  mise a jour du site web <br />  <br />  Profil recherché :<br />  <br />  Diplôme en design graphique, marketing, communication ou équivalent.<br />  Expérience en tant que Designer/Infographiste, Media Buyer, et Account Manager.<br />  Maîtrise des logiciels de design (Adobe Creative Suite) et des plateformes publicitaires numériques.<br />   Merci de mentionner le poste en répondant a cette annonce<br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>recrutement des profs de francais au primaire</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Tanger</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 17:00</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY3LTMzNi02ODkx' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>ecole privée a tanger</div>
+                         <div><strong>Location : </strong>Tanger</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 17:00</div>
+                         <p>Une école a Tanger cherche a recruter une maitresse de lalangue française ou d'anglaispour le primaire <br>les conditions de recrutement <br>* l’expérience <br>* posséder un diplôme requis pour le poste <br>si vous êtes intéressé veuillez envoyer votre CV via ce site</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Assistante de bureau</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 16:50</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTExMS01MTg3' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>FIRST COPY</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 16:50</div>
+                         <p>Nous sommes une société situé à ain sebaa,spécialisé dans la Vente et Locations des Copieurs MFP,à la recherche d'une assistante de bureau polyvalente ayant minimum bac+2.<br />  Merci d'envoyer CV+PHOTO.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Secrétaire de notaire</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 16:30</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTEyOS0wMDc2' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Bureau de notaire</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 16:30</div>
+                         <p>Notaire à Casablanca recrute une secrétaire avec ou sans expérience dans le domaine, sérieuse, ponctuelle et présentable.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>أستاذة اللغة العربية </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-16 16:25</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE4OC0yMzc5' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>مدرسة حرة</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-16 16:25</div>
+                         <p>مدرسة حرةبالبيضاءتبحث عن استاذ/ة اللغة العربية للقسم التاني او التالث ابتدائي للسنة الدراسية الحالية . المطلوب :خيرة مهنية في مجال التعليم الحر .شارع اميل زولا</p>
+                     </div>
+                 </div>
+         
+<div class='pagination'>
+<a class='left' href='index.html'>« First</a>
+<a class='left' href='index.html'>« Prev</a>
+<a href='index.html'>1</a>
+<a href='2.html' class='active'>2</a>
+<a href='3.html'>3</a>
+<a href='4.html'>4</a>
+<a href='5.html'>5</a>
+<a href='6.html'>6</a>
+<a href='7.html'>7</a>
+<a href='8.html'>8</a>
+<a href='9.html'>9</a>
+<a href='10.html'>10</a>
+<a class='right'  href='3.html'>Next »</a>
+<a class='right'  href='10.html'>Last »</a>
+</div>
+
+</div>
+
+   <div class='footer-section'>
+       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
+       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
+       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
+   </div>
+    <script>
+        function toggleDescription(element) {
+            var description = element.nextElementSibling;
+            var isVisible = description.style.display === 'block';
+            description.style.display = isVisible ? 'none' : 'block';
+            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

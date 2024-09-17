@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+<!-- Métadonnées SEO -->
+<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
+<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
+<meta name='author' content='Otmane Echaibi'>
+<meta property='og:title' content='Offres d'emploi au Maroc'>
+<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
+<meta property='og:image' content='logo.png'>
+<meta property='og:url' content='https://example.com'>
+
+<!-- Favicon -->
+<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
+
+<!-- Polices et icônes -->
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
+
+    <title>Maroc Emploi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .job-posting {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 2rem; /* Space between job postings */
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text left inside the posting */
+        }
+        .header {
+            margin-bottom: 1rem;
+        }
+        .header h3 {
+            margin: 0;
+        }
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .job-detail {
+            margin: 0.5rem;
+            font-weight: bold;
+        }
+        .job-description {
+            display: none; /* Initially hidden */
+            margin: 1rem 0;
+        }
+        .show-description {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .show-description:hover {
+            color: #0056b3;
+        }
+        .phone-number {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .phone-number img {
+            max-width: 100px;
+            height: auto;
+        }
+        .phone-number p {
+            margin: 0;
+            font-size: 1rem;
+            margin-right: 0.75rem;
+        }
+        @media (min-width: 600px) {
+            .phone-number img {
+                max-width: 180px;
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 40px; /* Add a fixed width to the buttons */
+          height: 30px; /* Add a fixed height to the buttons */
+          line-height: 30px; /* Add a fixed line height to the buttons */
+          text-align: center; /* Center the text horizontally */
+        }
+        .pagination a:hover {
+            background: #0056b3;
+        }
+        .pagination .active {
+            background: #0056b3;
+            pointer-events: none;
+        }
+        .header-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            margin-right: 1rem;
+        }
+
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+        .footer-section {
+            background-color: #f8f000;
+            color: #111;
+            padding: 1rem;
+            text-align: center;
+            clear: both;
+        }
+        .footer-section p {
+            margin: 0;
+        }
+        .job-detail .highlight {
+            color: green;
+        }
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            text-align: left;
+        }
+        .developer {
+            text-decoration: none;
+            text-color: darkorange;
+        }
+        .pagination .left {
+            width: 60px;
+            justify-content: left;
+        }
+        .pagination .right {
+            width: 60px;
+            justify-content: right;
+        }
+        .totaljobs {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+   <div class='header-section'>
+       <div class='header-text'>
+           <h1>Maroc Emploi</h1>
+           <p>L'emploi à votre portée, sans les complications!</p>
+       </div>
+   </div>
+    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
+    <div class='container'>
+
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Femme de ménage – CASABLANCA </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 11:22</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTYwMi02ODMz' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>NETTOYAGE &amp; SERVICES </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 11:22</div>
+                         <p>Nous recrutons une femme de ménage sur la ville de Casablanca idéalement avec une expérience dans le domaine. </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>aide chauffeur / مساعد سائق</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 11:11</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Manpower  </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 11:11</div>
+                         <p>نحتاج الى مساعد سائق  شاحنة ل شركة ب دار بوعزة مطلوب اشخاص يسكنون ب الاحياء الاتية : الولفة،الحي الحسني ، ليسايفة ، سيدي معروف شروط القبول : التوفر على الاولى باكالوريا و التجربة ك مساعد سائق  <br />  on recherche des aides chauffeurs permis c pour notre client qui habitent dans le régions lisasfa ; rahma, sidi maarouf </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Chargé(e) d&#039;accueil intérim à SIDI MAAROUF CASA</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 11:07</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI5Mi01NTY0' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>AVANTA MAROC</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>3 000 - 4 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 11:07</div>
+                         <p>Nous recrutons pour le compte de l'un de nos clients une chargée d'accueil en contrat d'intérim à Casablanca Sidi Maarouf<br />  <br />  Transport est assuré<br />  Salaire 3 500,00 Net</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Agent de surveillance et gardiennage</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 10:46</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTYwMi02ODMz' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>GUARD&amp;SURVEY</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 10:46</div>
+                         <p>Société de surveillance et gardiennage recrute pour -CASABLANCA - Des agents de surveillance et gardiennage compétents, avec une très bonne condition physique ayant une expérience minimale de 9mois  dans un poste similaire.</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>chaudronnier poste à bouskoura </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 10:43</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Manpower  </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 10:43</div>
+                         <p> bonjour , <br />  pour le compte de notre client opérant dans le secteur aéronautique on recherche des chaudronniers poste basé a Bouskoura , transport non assuré .<br />  profil recherché :<br />  se justifier d'un niveau bac au minimum <br />  un diplôme en chaudronnerie <br />  Capacité à lire et interpréter des plans techniques ;<br />   Préparer et fabriquer des pièces métalliques ;<br />   Vérifier la conformité des pièces ;<br />   Effectuer les assemblages d’éléments d’un sous-ensemble chaudronné dans le respect des exigences qualité, sécurité et environnement ;<br />    Contrôler la qualité du produit fabriqué <br />  <br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>ELECTROMECANIQUE / MECANICIEN / CHAUDRONNIER </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 10:35</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTIwOS02NjQy' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>DAMA</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>A discuter</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 10:35</div>
+                         <p>Nous recrutons pour notre client opérant dans le secteur de la métallurgie un Electromécanicien, un Mécanicien et un Chaudronnier.<br />  <br />  Profil requis :<br />  <br />  - Diplôme en Electromécanique, Mécanique, Construction Métallique<br />  - Expérience de 3 ans minimum<br />  - La candidate doit être âgé de 24 ans minimum<br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Opérateur intérim RABAT/SALE/BERRECHID/HAD SOUALE</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Tout le Maroc</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 09:37</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI5Mi01NTY0' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>AVANTA MAROC</div>
+                         <div><strong>Location : </strong>Tout le Maroc</div>
+                         <div><strong>Salaire : </strong>2 000 - 3 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 09:37</div>
+                         <p>Nous recrutons pour l'un de nos clients des Opérateur Ouviers livereur de marchandises en contrat d'intérim à <br />  <br />  Mohammedia<br />  -Casablanca<br />  -Deroua<br />  -Had Soualem<br />  -Berrechid<br />  -El Jadida<br />  -Rabat<br />  -Salé<br />  </p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Acheteur Débutant H/F intérim Casablanca </h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-13 09:29</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTI5Mi01NTY0' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>AVANTA MAROC</div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-13 09:29</div>
+                         <p>Nous recrutons pour le compte de l'un de nos client un acheteur H/F en contrat d'intérim à Casablanca</p>
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>ASSISTANTE ADMIN ET COMPTABLE - CASA/AIN SEBAA</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  13 Sep-9:16</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDUyLTIyMC05Mjkw' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>DAMA</div>
+                         <div><strong>Location : </strong>Casablanca </div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong> 13 Sep-9:16</div>
+                         Nous recrutons pour notre client une Assistante Administrative et Comptable sur la ville de Casablanca .<br />  <br />  Missions :<br />  <br />  •	Recevoir, traiter et suivre les commandes clients, en assurant la coordination entre les ventes et la logistique ;<br />  •	Etablir les factures, assurer le suivi des paiements et gérer les relances en cas de retard de paiement ;<br />  •	Tenir à jour les livres de comptes, enregistrer les opérations courantes telles que les achats, les frais généraux, etc. ;<br />  •	Collaborer avec le service ADV pour assurer une gestion efficace des stocks et des inventaires ;<br />  •	Fournir un soutien administratif aux équipes commerciales et comptables, tel que la gestion des dossiers clients et fournisseurs.<br />  <br />  Profil requis :<br />  <br />  •	Expérience de 1 à 2 ans dans la gestion administrative ou la comptabilité ;<br />  •	Connaissances informatiques et connaissance de logiciels comptable et logiciels de gestion ;  <br />  •	Connaissance de la fiscalité marocaine ;<br />  •	Profil dynamique avec un fort sens de l'organisation et du suivi ;<br />  •	Rigueur, sens de l’organisation, esprit d’équipe et discrétion ;<br />  •	Bonnes compétences en communication orale et écrite.<br />  
+                     </div>
+                 </div>
+         
+
+                 <div class='job-posting'>
+                     <div class='header'>
+                         <h3>Chef de cuisine</h3>
+                     </div>
+                     <div class='job-details'>
+                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
+                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-09-12 21:44</span></div>
+                     </div>
+                     <div class='phone-number'>
+                         <p><i class='fas fa-phone'></i>Téléphone :</p>
+                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDYwLTA5OC0xMzUx' alt='Phone Number'>
+                     </div>
+                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
+                     <div class='job-description'>
+                         <h3>La description de l'emploi</h3>
+                         <div><strong>Organization : </strong>Ofamous ziraoui </div>
+                         <div><strong>Location : </strong>Casablanca</div>
+                         <div><strong>Salaire : </strong>4 000 - 6 000 DH</div>
+                         <div><strong>Publiée le : </strong>2024-09-12 21:44</div>
+                         <p>Nous recherchons un Chef de Cuisine expérimenté et sérieux pour rejoindre notre équipe dans notre restaurant situé à Casablanca, Ziraoui. <br />  <br />  **Profil recherché :**<br />  - Expérience significative en cuisine<br />  - Compétence en gestion d'équipe et en organisation de la cuisine<br />  - Créativité culinaire et souci du détail<br />  - Sérieux et professionnalisme</p>
+                     </div>
+                 </div>
+         
+<div class='pagination'>
+<a class='left' href='index.html'>« First</a>
+<a class='left' href='8.html'>« Prev</a>
+<a href='index.html'>1</a>
+<a href='2.html'>2</a>
+<a href='3.html'>3</a>
+<a href='4.html'>4</a>
+<a href='5.html'>5</a>
+<a href='6.html'>6</a>
+<a href='7.html'>7</a>
+<a href='8.html'>8</a>
+<a href='9.html' class='active'>9</a>
+<a href='10.html'>10</a>
+<a class='right'  href='10.html'>Next »</a>
+<a class='right'  href='10.html'>Last »</a>
+</div>
+
+</div>
+
+   <div class='footer-section'>
+       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
+       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
+       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
+   </div>
+    <script>
+        function toggleDescription(element) {
+            var description = element.nextElementSibling;
+            var isVisible = description.style.display === 'block';
+            description.style.display = isVisible ? 'none' : 'block';
+            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        }
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
