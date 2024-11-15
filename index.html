@@ -1,465 +1,628 @@
-
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.">
+    <meta name="author" content="Otmane Echaibi">
+    <!-- Métadonnées SEO -->
+    <meta name="description" content="Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.">
+    <meta name="keywords" content="emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement">
+    <meta name="author" content='Otmane Echaibi">
+    <meta property="og:title' content="Offres d'emploi au Maroc">
+    <meta property="og:description" content="Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.">
+    <meta property='og:image' content='logo.png'>
+    <meta property='og:url' content='https://example.com'>
 
-<!-- Métadonnées SEO -->
-<meta name='description' content='Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.'>
-<meta name='keywords' content='emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement'>
-<meta name='author' content='Otmane Echaibi'>
-<meta property='og:title' content='Offres d'emploi au Maroc'>
-<meta property='og:description' content='Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.'>
-<meta property='og:image' content='logo.png'>
-<meta property='og:url' content='https://example.com'>
-
-<!-- Favicon -->
-<link rel='icon' href='favicons/favicon.ico' type='image/x-icon'>
-
-<!-- Polices et icônes -->
-<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'>
-
+    <!-- Favicon -->
+    <link rel='icon' href='static/favicons/favicon.ico' type='image/x-icon'>
     <title>Maroc Emploi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.autocomplete.min.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+        :root {
+            --primary: #ffc107; /* Dark gold */
+            --primary-dark: #b38600;
+            --secondary: #ffc107;
+            --background: #1a1a1a; /* Dark background */
+            --surface: #333333; /* Slightly lighter background for contrast */
+            --text: #f8f9fa; /* Light text */
+            --text-secondary: #ced4da;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+/*            font-family: 'Inter', -apple-system, sans-serif;*/
+            font-family: 'Anonymous Pro', monospace; 
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+/*            background: linear-gradient(to right, var(--primary-dark), var(--secondary));*/
+            background: #191919;
+            padding: 2rem 1rem;
             text-align: center;
         }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 2rem auto;
-            padding: 1rem;
+            padding: 0 1rem;
         }
-        .job-posting {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 2rem; /* Space between job postings */
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: left; /* Align text left inside the posting */
+
+        .search-section {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            margin-bottom: 1rem;
-        }
-        .header h3 {
-            margin: 0;
-        }
-        .job-details {
+
+        .search-container {
             display: flex;
+            gap: 1rem;
             flex-wrap: wrap;
-            justify-content: left;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
         }
-        .job-detail {
-            margin: 0.5rem;
-            font-weight: bold;
+
+        .search-group {
+            flex: 1;
+            min-width: 200px;
         }
-        .job-description {
-            display: none; /* Initially hidden */
-            margin: 1rem 0;
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--text-secondary);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            transition: all 0.3s ease;
         }
-        .show-description {
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
             cursor: pointer;
-            color: #007bff;
-            text-decoration: underline;
-            margin-top: 1rem;
-            transition: color 0.3s ease;
-        }
-        .show-description:hover {
-            color: #0056b3;
-        }
-        .phone-number {
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
-        .phone-number img {
-            max-width: 100px;
-            height: auto;
+
+        .filter-chip {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .phone-number p {
-            margin: 0;
+
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .job-card {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-company {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            align-items: center;
+        }
+
+        .job-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Consistent spacing between icon and text/image */
+            padding: 0.5rem 0.75rem; /* Consistent padding */
+            background: #fff;
+            color: #111;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            border: 2px solid rgba(0, 0, 0, 0.1); /* Consistent border */
+            height: 1.5rem; /* Fixed height for both tags */
+        }
+
+        /* Style for both icons */
+        .job-tag i {
             font-size: 1rem;
-            margin-right: 0.75rem;
+            width: 1rem; /* Fixed width for icons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        @media (min-width: 600px) {
-            .phone-number img {
-                max-width: 180px;
-            }
+
+        /* Style for phone number image */
+        .job-tag img {
+            height: 1.3rem;
+            width: auto;
+            object-fit: contain; /* Maintain aspect ratio */
         }
+
+        .posted-on {
+            color: var(--success);
+            font-weight: 600;
+        }
+
         .pagination {
             display: flex;
             justify-content: center;
-            margin: 2rem 0;
             gap: 0.5rem;
+            margin-top: 2rem;
         }
-        .pagination a {
-            display: inline-block;
+
+        .page-button {
             padding: 0.5rem 1rem;
-            background: #007bff;
-            color: #fff;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-button:hover:not(:disabled) {
+            background: var(--primary);
+            color: white;
+        }
+
+        .page-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            color: var(--primary);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            width: 40px; /* Add a fixed width to the buttons */
-          height: 30px; /* Add a fixed height to the buttons */
-          line-height: 30px; /* Add a fixed line height to the buttons */
-          text-align: center; /* Center the text horizontally */
         }
-        .pagination a:hover {
-            background: #0056b3;
+
+        .footer a:hover {
+            text-decoration: underline;
         }
-        .pagination .active {
-            background: #0056b3;
-            pointer-events: none;
-        }
-        .header-section {
-            background-color: #f8f000;
-            color: #111;
-            padding: 1rem;
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
         }
 
-        .header-logo {
-            margin-right: 1rem;
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .header-logo img {
-            max-width: 80px;
-            height: auto;
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
-        .header-text {
-            flex-grow: 1;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        .footer-section {
-            background-color: #f8f000;
-            color: #111;
-            padding: 1rem;
+
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-group {
+                width: 100%;
+            }
+            
+            .job-header {
+                flex-direction: column;
+            }
+        }
+        .job-description {
+            display: none;
+        }
+
+        .job-description.visible {
+            display: block;
+        }
+
+        .search-section {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-dropdown {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--text-secondary);
+            border-radius: 0.5rem;
+            background: var(--surface);
+            color: var(--text);
+            appearance: none;
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+/*            background: var(--primary);*/
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+        }
+        .job-tags .fa-map-marker-alt,
+        .job-tags .fa-clock,
+        .job-tags .fa-phone {
+            margin-right: 5px; /* Adds space between the icon and the text */
+        }
+        .job-description {
+            display: none;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .job-description.visible {
+            display: block;
+        }
+        .line-1 {
+            font-family: 'Arial', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+            position: relative;
+            top: 50%;
+            width: 0ch;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            font-size: 180%;
             text-align: center;
-            clear: both;
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);
         }
-        .footer-section p {
-            margin: 0;
+        
+        .anim-typewriter {
+            animation: typewriter 1s steps(13) 1s 1 normal both,
+                       blinkTextCursor 2s steps(44) infinite normal;
         }
-        .job-detail .highlight {
-            color: green;
-        }
-        .header-section img {
-            width: 50px;
-            height: 50px;
-            text-align: left;
-        }
-        .developer {
-            text-decoration: none;
-            text-color: darkorange;
-        }
-        .pagination .left {
-            width: 60px;
-            justify-content: left;
-        }
-        .pagination .right {
-            width: 60px;
-            justify-content: right;
-        }
-        .totaljobs {
-            color: green;
+        
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 13ch; /* Adjusted for "Blue Jobs &#128526;" */
+            }
         }
     </style>
 </head>
 <body>
-   <div class='header-section'>
-       <div class='header-text'>
-           <h1>Maroc Emploi</h1>
-           <p>L'emploi à votre portée, sans les complications!</p>
-       </div>
-   </div>
-    <p><strong class='totaljobs'>100 emploi trouvé!</strong></p>
-    <div class='container'>
+    <header class="header">
+        <div class="line-1 anim-typewriter">Blue Jobs 😎</div>
+        <p>Fini les CV fantômes. Passez à l’action !</p>
+    </header>
 
+    <main class="container">
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-group">
+                    <select class="search-dropdown" id="city-dropdown">
+                        <option value="">Sélectionnez une ville</option>
+                    </select>
+                </div>
+                <button class="search-button" onclick="searchJobs()">
+                    <i class="fas fa-search"></i>
+                    Rechercher
+                </button>
+            </div>
+        </section>
 
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Chargé d&#39;études courants faibles / </h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  13 Oct-10:50</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY3LTMxNC04OTk4' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Oger International M/aroc</div>
-                         <div><strong>Location : </strong>Casablanca </div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong> 13 Oct-10:50</div>
-                         Chargé d'études courants faibles / Profil ingénieur 3 à 5 ans d'expérience , ou technicien confirmé 8 à 10 ans d’expérience<br />  <br />  Tâches :<br />  •	Etablir des plans, schémas, notes de calculs …<br />  •	Rédiger des devis descriptifs et quantitatifs<br />  •	Analyser des offres et rapports de synthèse<br />  •	Etablir la sélection d’appareils sur catalogue<br />  •	Suivre le planning de production<br />  •	Assurer le suivi des chantiers-visas techniques<br />  •	Réceptionner les installations (au niveau technique)<br />  <br />  Connaissances Informatiques :  Microsoft Office / AUTOCAD <br />  
-                     </div>
-                 </div>
-         
+        <div id="jobs-container"></div>
 
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Gommeuse,  masseuse, staff spa ..</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Marrakech</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-13 10:20</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDAwMDAw' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Riad spa</div>
-                         <div><strong>Location : </strong>Marrakech</div>
-                         <div><strong>Salaire : </strong>3 000 - 4 000 DH</div>
-                         <div><strong>Publiée le : </strong>2024-10-13 10:20</div>
-                         <p>Riad spa dans la meidna de marrakech à la recherche d'une Esthéticienne et une masseuse et une gommeuse pour celles qui sont intéressées, merci de nous envoyer vos cv </p>
-                     </div>
-                 </div>
-         
+        <div class="pagination">
+            <button class="page-button" onclick="prevPage()" id="prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="page-info" class="page-button"></span>
+            <button class="page-button" onclick="nextPage()" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
 
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Chargé(e) de recrutement IT (FR/EN) – Fès</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Fès</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-13 09:00</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDAzMjAyMzE4NjQ=' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Silitech consulting</div>
-                         <div><strong>Location : </strong>Fès</div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong>2024-10-13 09:00</div>
-                         <p>STM Outsourcing, filiale marocaine de la société belge Silitech Consulting, est spécialisée dans le recrutement IT au Maroc et à l'international pour des missions en Europe.<br />  <br />  <br />  Dans le cadre du renforcement de notre équipe de recrutement, nous ouvrons une nouvelle succursale à Fès. Nous sommes à la recherche d'un(e) Chargé(e) de Recrutement IT (FR/EN), avec un tempérament commercial, un goût prononcé pour les défis, et désireux(se) d'évoluer au sein d'une entreprise dynamique en pleine expansion.<br />  <br />  <br />  Missions : <br />  <br />  <br />  La mission porte principalement sur trois grands axes : le recrutement, la prospection et l’administratif :<br />  <br />  <br />  Recrutement<br />  Rédiger et diffuser les annonces de recrutement sur les supports adaptés et en assurer le suivi ;<br />  Faire le sourcing des profils sur les différentes plateformes ;<br />  Évaluer le profil des candidats au travers des entretiens et suivant le processus de recrutement mis en place ;<br />  Évaluer le niveau d’Anglais et de Français des candidats ; <br />  Sélectionner les candidats en adéquation avec les besoins du marché en Belgique ;<br />  Alimenter et maintenir à jour la base de données des ingénieurs ;<br />  Consolider et faire le reporting des résultats des entretiens.<br />  <br />  <br />  Prospection<br />  Trouver des missions pour nos ingénieurs ;<br />  Préparer nos ingénieurs aux entretiens de recrutement ;<br />  Participer aux entretiens de nos ingénieurs chez les clients et partenaires ;<br />  Alimenter et maintenir à jour la base de données de clients ;<br />  S'assurer de la satisfaction des clients et mesurer la qualité des prestations de nos ingénieurs ;<br />  Organiser des points de suivi de mission réguliers avec nos ingénieurs.<br />  <br />  <br />  Administratif<br />  Faire le suivi administratif des ingénieurs pour les faire venir en Belgique ;<br />  Assurer le suivi des timesheets mensuelles des ingénieurs chez les clients ;<br />  Etablir et faire le suivi des contrats avec les clients ;<br />  Tâches administratives à la demande, suivant le besoin.<br />  <br />  <br />  Profil recherché : Chargé(e) de Recrutement IT (FR/EN) - Fès<br />  <br />  De</p>
-                     </div>
-                 </div>
-         
+    <footer class="footer">
+        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/otmane-echaibi-90a524309/">Otmane Echaibi </a>
+        &copy; <span id="year"></p>
+    </footer>
 
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Coiffeuse et esthéticienne</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-12 22:20</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDYyLTU0Ni00MjU5' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Salon de coiffure chez Colita</div>
-                         <div><strong>Location : </strong>Casablanca</div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong>2024-10-12 22:20</div>
-                         <p>Nous recherchons une coiffeuse et esthéticienne polyvalente et expérimentée pour rejoindre notre équipe dynamique. Vous serez responsable de fournir des services de coiffure et de soins esthétiques de qualité à notre clientèle.<br />  Responsabilités :<br />  - Accueillir les clients et évaluer leurs besoins en matière de coiffure et de soins esthétiques.<br />  - Réaliser des coupes, colorations, coiffures, brushing et traitements capillaires.<br />  - Offrir des soins du visage, manucures, pédicures, épilations et maquillages.<br />  - Conseiller les clients sur les produits et les soins adaptés à leurs besoins.<br />  - Maintenir un espace de travail propre et respectant les normes d’hygiène.</p>
-                     </div>
-                 </div>
-         
+    <div class="scroll-top" id="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Réceptionniste bilingue expérimentée</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-12 20:42</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTE1OS05Nzcz' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Pj</div>
-                         <div><strong>Location : </strong>Casablanca</div>
-                         <div><strong>Salaire : </strong>3 000 - 4 000 DH</div>
-                         <div><strong>Publiée le : </strong>2024-10-12 20:42</div>
-                         <p>Nous sommes à la recherche d'une réceptionniste pour une salle de yoga à Ain Diab qui maîtrise parfaitement le français.</p>
-                     </div>
-                 </div>
-         
-
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Travail à distance (Agent de réservations)</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  12 Oct-20:33</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY2LTIwOS0yMTEy' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Agence de transport touristique et privé</div>
-                         <div><strong>Location : </strong>Casablanca </div>
-                         <div><strong>Salaire : </strong>2 000 - 3 000 DH</div>
-                         <div><strong>Publiée le : </strong> 12 Oct-20:33</div>
-                         Nous recrutons pour le compte d'une agence de transport touristique basée à Sidi Maarouf Casablanca, une personne (F) chargée d'assistance d’administration et qui peut travailler à distance au minimum les 2 premiers mois.<br />  <br />  Missions principales :<br />  - Gestion des réservations : Prendre en charge les demandes de réservation de transport.<br />  - Gestion des courriers et e-mails (réception, réponse, transmission).<br />  - Réception des appels téléphoniques<br />  - Conseil client : Fournir des informations précises et des conseils sur les trajets, les disponibilités, les prix et les services.<br />  - Orientation client : Sens du service et excellente communication pour répondre aux besoins des clients.<br />  - Gestion des litiges : Répondre aux réclamations et résoudre les problèmes liés aux réservations de manière proactive.<br />  - Suivi des dossiers clients : Assurer le suivi des réservations, modifications ou annulations, et veiller à la satisfaction des clients.<br />  - Coordination avec les partenaires : Collaborer avec les agences de transport et autres prestataires pour garantir la disponibilité et le bon déroulement des services réservés.<br />  - La gestion commerciale : établissement des factures et devis<br />  - Le recouvrement : le suivi des règlements pour les impayés et la récupération.<br />  - Classement des déférents dossiers administratifs.<br />  - Compétences requises :<br />  -Langues : Maîtrise de l'anglais (oral et écrit), le français et l’arabe sont des atouts.<br />  -Compétences organisationnelles : Capacité à gérer plusieurs réservations simultanément et à respecter les délais.<br />  Exigences :<br />  <br />  -	Habite à Sidi Maarouf Casablanca<br />  -	Expérience préalable dans un poste similaire<br />  -	Maîtrise obligatoire du français et de l'anglais<br />  -	Travaille à distance les premiers mois<br />  <br />  Comment postuler :<br />  Envoyez votre CV à travers ce site.<br />  
-                     </div>
-                 </div>
-         
-
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>Offre d&#039;Emploi Magasinier Expérimenté</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-12 16:35</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDYwLTgxMS0wMTEw' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>MALL OFFICE</div>
-                         <div><strong>Location : </strong>Casablanca</div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong>2024-10-12 16:35</div>
-                         <p>MALL OFFICE - Importateur et Distributeur de Matériel Informatique et Consommables<br />  Basé à Casablanca,<br />  <br />  Dans le cadre de notre développement, nous recherchons un :<br />  Magasinier Expérimenté<br />  <br />  Missions :<br />  - Réception et stockage des marchandises<br />  - Préparation des commandes et gestion des expéditions<br />  - Gestion des stocks et suivi des inventaires<br />  - Coordination avec les autres départements pour garantir une logistique fluide<br />  <br />  Profil recherché :<br />  - Expérience confirmée en tant que magasinier<br />  - Maîtrise des outils de gestion des stocks et des logiciels de gestion (Sage)<br />  - Organisation, rigueur et réactivité<br />  - Capacité à travailler en équipe<br />  <br />  Avantages :<br />  - Salaire motivant en fonction de l'expérience<br />  - Opportunité d'évolution professionnelle<br />  - Environnement de travail agréable et stimulant<br />  <br />  Lieu de travail* : 146, Avenue Hassan Sghir Casablanca<br />  <br />  Si vous êtes intéressé(e), veuillez envoyer votre CV.</p>
-                     </div>
-                 </div>
-         
-
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>ASSISTANT COMPTABLE</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca </div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'>  12 Oct-15:55</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDcwLTIwMy02MDQx' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>STE ALMADINA CERAM</div>
-                         <div><strong>Location : </strong>Casablanca </div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong> 12 Oct-15:55</div>
-                         Nous recherchons un agent administration des ventes compètent et dynamique pour rejoindre notre équipe,					<br />  Vous serez responsable de diverses tâches administratives liées aux ventes, de la gestion des inventaires a la facturation en passant par l'analyse des données commerciales. 	<br />  N.B: le candidat doit être motorisé.<br />    le transport le plus proche à 1.5 km<br />  Adresse : route mediouna km 12 casablanca<br />  
-                     </div>
-                 </div>
-         
-
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>PRODUCTION</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Marrakech</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-12 15:00</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDYxLTI5MS01Mzc4' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>ASSURANCE</div>
-                         <div><strong>Location : </strong>Marrakech</div>
-                         <div><strong>Salaire : </strong>A discuter</div>
-                         <div><strong>Publiée le : </strong>2024-10-12 15:00</div>
-                         <p>Bonjour,<br />  <br />  <br />  Une assurance a la recherche d'une jeune fille ou bien un jeune homme qui habite à la médina sur la ville de Marrakech , pour un stage pré-embauche.<br />  <br />   <br />  <br />  Comme mission vous aurez les tâches suivantes:<br />  <br />  .Production<br />  <br />  .Sinistre<br />   <br />  <br />  Le Niveau demandé :<br />  <br />  .Bac +1 // Bac+2<br />  <br />   <br />  <br />   <br />  <br />  Cordialement</p>
-                     </div>
-                 </div>
-         
-
-                 <div class='job-posting'>
-                     <div class='header'>
-                         <h3>AGENT CONSTATEUR</h3>
-                     </div>
-                     <div class='job-details'>
-                         <div class='job-detail'><strong>Location:</strong>Casablanca</div>
-                         <div class='job-detail'><strong>Publiée le: </strong><span class='highlight'> 2024-10-12 14:50</span></div>
-                     </div>
-                     <div class='phone-number'>
-                         <p><i class='fas fa-phone'></i>Téléphone :</p>
-                         <img src='https://www.marocannonces.com/phone_number_jobs.php?phone=MDY3LTUyOS0yOTU3' alt='Phone Number'>
-                     </div>
-                     <div class='show-description' onclick='toggleDescription(this)'>Afficher la description de l'emploi</div>
-                     <div class='job-description'>
-                         <h3>La description de l'emploi</h3>
-                         <div><strong>Organization : </strong>Assistance</div>
-                         <div><strong>Location : </strong>Casablanca</div>
-                         <div><strong>Salaire : </strong>2 000 - 3 000 DH</div>
-                         <div><strong>Publiée le : </strong>2024-10-12 14:50</div>
-                         <p>nous sommes a la recherche d'un agent constatateur possédé un moto vitesse , rédédent a sidi maaroud centre ville ( belvédère, Bourgogne,medina 9edima ) ville de casablanca , avoir un smart phone <br />  Conditions d'engagement :<br />  1 mois de formation obligatoire <br />  <br />  vous étes intéressé merci de nous envoyer votre demande sur whatsapp 0675292957</p>
-                     </div>
-                 </div>
-         
-<div class='pagination'>
-<!-- <a href='#'>« First</a> -->
-<!-- <a href='#'>« Prev</a> -->
-<a href='1.html' class='active'>1</a>
-<a href='2.html'>2</a>
-<a href='3.html'>3</a>
-<a href='4.html'>4</a>
-<a href='5.html'>5</a>
-<a href='6.html'>6</a>
-<a href='7.html'>7</a>
-<a href='8.html'>8</a>
-<a href='9.html'>9</a>
-<a href='10.html'>10</a>
-<a class='right'  href='2.html'>Next »</a>
-<a class='right'  href='10.html'>Last »</a>
-</div>
-
-</div>
-
-   <div class='footer-section'>
-       <p>&copy; <span id='year'></span> Maroc Emploi.</p>
-       <p>Designed and developed by <a class='developer' href='https://www.linkedin.com/in/otmane-echaibi-90a524309/'>Otmane Echaibi</a></p>
-       <p>Email: sudotoo@protonmail.com | Telephone: 0684206312</p>
-   </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.autocomplete.min.js"></script>
     <script>
-        function toggleDescription(element) {
-            var description = element.nextElementSibling;
-            var isVisible = description.style.display === 'block';
-            description.style.display = isVisible ? 'none' : 'block';
-            element.textContent = isVisible ? 'Afficher la description de l\'emploi' : 'Masquer la description de l\'emploi';
+        let jobs = [];
+        let currentPage = 1;
+        let jobsPerPage = 5;
+        let filteredJobs = [];
+        let cities = [];
+
+        // Initialize jobs data
+        fetch('jobs.json')
+            .then(response => response.json())
+            .then(data => {
+                jobs = data;
+                filteredJobs = jobs;
+                cities = [...new Set(jobs.map(job => job.location))];
+                populateCityDropdown();
+                renderJobs();
+                updatePagination();
+            })
+            .catch(error => console.error('Error:', error));
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0'); // Ensures 2-digit day
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
         }
+
+        function toggleJobDescriptionAndAd(button) {
+            const jobCard = button.closest('.job-card');
+            const description = jobCard.querySelector('.job-description');
+            const adContainer = jobCard.querySelector('.ad-container');
+
+            if (description.style.display === 'none') {
+                description.style.display = 'block';
+                adContainer.style.display = 'block';
+                button.textContent = 'Masquer la description';
+                button.style.backgroundColor = '#f44336'; // Change button color (red in this case)
+            } else {
+                description.style.display = 'none';
+                adContainer.style.display = 'none';
+                button.textContent = 'Afficher la description';
+                button.style.backgroundColor = ''; // Reset button color to default
+            }
+        }
+
+
+        function renderJobs() {
+            const container = document.getElementById('jobs-container');
+            const start = (currentPage - 1) * jobsPerPage;
+            const end = start + jobsPerPage;
+            const paginatedJobs = filteredJobs.slice(start, end);
+
+            container.innerHTML = paginatedJobs.map(job => `
+                <article class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <h2 class="job-title">${job.title}</h2>
+                            <p class="job-company">${job.organization}</p>
+                        </div>
+                        <div class="posted-on">${formatDate(job.postedOn)}</div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
+                        <span class="job-tag phone-number"><i class="fas fa-phone"></i><img src="${job.phoneNumber}"></span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="search-button" onclick="toggleJobDescription(this)">
+                            Afficher la description
+                        </button>
+                    </div>
+                    <div class="job-description">${job.description}</div>
+                    <div class="ad-container" style="display: none; margin-top: 10px;">
+                        <!-- AdSense ad unit -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"  <!-- Replace with your AdSense client ID -->
+                             data-ad-slot="xxxxxxxxxx"  <!-- Replace with your AdSense ad slot -->
+                             data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        <\/script>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function toggleJobDescription(button) {
+            const jobDescription = button.parentNode.nextElementSibling; // Target the job description
+            const isVisible = jobDescription.classList.toggle('visible'); // Toggle visibility
+
+            // Update button text and style based on visibility
+            if (isVisible) {
+                button.textContent = "Masquer la description"; // Change text
+                button.style.backgroundColor = "#d9534f"; // Change to a red color
+                button.style.color = "#fff"; // Ensure text is readable
+            } else {
+                button.textContent = "Afficher la description"; // Revert text
+                button.style.backgroundColor = ""; // Reset to default background
+                button.style.color = ""; // Reset to default color
+            }
+        }
+
+
+        function searchJobs() {
+            const selectedCity = document.getElementById('city-dropdown').value;
+            filteredJobs = selectedCity
+                ? jobs.filter(job => job.location === selectedCity)
+                : jobs;
+            currentPage = 1;
+            renderJobs();
+            updatePagination()
+        }
+
+        function populateCityDropdown() {
+            const dropdown = document.getElementById('city-dropdown');
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                dropdown.appendChild(option);
+            });
+        }
+
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+            document.getElementById('page-info').textContent = `${currentPage} / ${totalPages}`;
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderJobs();
+                updatePagination();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderJobs();
+                updatePagination();
+            }
+        }
+
+        // Scroll to top functionality
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Autocomplete for location search
+        $('#location-search').autocomplete({
+            lookup: cities,
+            onSelect: function (suggestion) {
+                searchJobs();
+            }
+        });
     </script>
 </body>
 </html>
-
