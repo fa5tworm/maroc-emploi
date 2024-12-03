@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TED URL Scraper</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cheerio/1.0.0-rc.12/cheerio.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #output {
+            white-space: pre-wrap;
+            background-color: #f4f4f4;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>TED URL Scraper</h1>
+    <div>
+        <label for="startUrl">Start URL:</label>
+        <input type="text" id="startUrl" value="https://www.ted.com" />
+
+        <label for="maxDepth">Max Depth:</label>
+        <input type="number" id="maxDepth" value="3" min="1" max="10" />
+
+        <label for="maxUrls">Max URLs:</label>
+        <input type="number" id="maxUrls" value="1000" min="10" max="5000" />
+
+        <button onclick="startScrape()">Start Scraping</button>
+    </div>
+
+    <h2>Scraped URLs:</h2>
+    <div id="output"></div>
+
+    <script>
+class TedUrlScraper {
+    constructor(baseUrl = 'https://www.ted.com') {
+        this.baseUrl = baseUrl;
+        this.visitedUrls = new Set();
+        this.foundUrls = new Set();
+    }
+
+    async scrape(startPath = '/', maxDepth = 3, maxUrls = 1000) {
+        console.log(`Starting scrape from: ${this.baseUrl}${startPath}`);
+        await this._crawlUrl(startPath, 0, maxDepth, maxUrls);
+        return Array.from(this.foundUrls);
+    }
+
+    async _crawlUrl(currentPath, currentDepth, maxDepth, maxUrls) {
+        const fullUrl = `${this.baseUrl}${currentPath}`;
+
+        if (this.visitedUrls.has(fullUrl) ||
+            this.foundUrls.size >= maxUrls ||
+            currentDepth > maxDepth) {
+            return;
+        }
+
+        this.visitedUrls.add(fullUrl);
+
+        try {
+            const response = await axios.get(fullUrl);
+            const $ = cheerio.load(response.data);
+
+            $('a').each((i, link) => {
+                const href = $(link).attr('href');
+                if (href) {
+                    const normalizedUrl = this._normalizeUrl(href);
+                    if (this._isValidUrl(normalizedUrl)) {
+                        this.foundUrls.add(normalizedUrl);
+                    }
+                }
+            });
+
+            // Recursive crawling
+            for (const link of $('a')) {
+                const href = $(link).attr('href');
+                if (href) {
+                    const normalizedUrl = this._normalizeUrl(href);
+                    if (this._isInternalLink(normalizedUrl)) {
+                        await this._crawlUrl(normalizedUrl, currentDepth + 1, maxDepth, maxUrls);
+                    }
+                }
+            }
+
+        } catch (error) {
+            console.error(`Error scraping ${fullUrl}: ${error.message}`);
+        }
+    }
+
+    _normalizeUrl(url) {
+        url = url.split('?')[0].split('#')[0];
+
+        if (url.startsWith('./')) url = url.slice(1);
+        if (!url.startsWith('/') && !url.startsWith('http')) {
+            url = `/${url}`;
+        }
+
+        return url;
+    }
+
+    _isValidUrl(url) {
+        return (
+            url.startsWith('http') ||
+            url.startsWith('/') &&
+            !url.includes('javascript:') &&
+            !url.includes('mailto:')
+        );
+    }
+
+    _isInternalLink(url) {
+        return (
+            url.startsWith('/') ||
+            url.includes('ted.com')
+        );
+    }
+
+    generateCSV() {
+        const urls = Array.from(this.foundUrls);
+        return urls.map(url => `"${url}"`).join('\n');
+    }
+}
+
+async function startScrape() {
+    const startUrl = document.getElementById('startUrl').value;
+    const maxDepth = parseInt(document.getElementById('maxDepth').value);
+    const maxUrls = parseInt(document.getElementById('maxUrls').value);
+    const outputDiv = document.getElementById('output');
+
+    outputDiv.textContent = 'Scraping in progress...';
+
+    try {
+        const scraper = new TedUrlScraper(startUrl);
+        await scraper.scrape('/', maxDepth, maxUrls);
+
+        const csvContent = scraper.generateCSV();
+        outputDiv.textContent = csvContent;
+
+        // Optional: Offer download
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('hidden', '');
+        a.setAttribute('href', url);
+        a.setAttribute('download', 'ted_urls.csv');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+    } catch (error) {
+        outputDiv.textContent = `Error: ${error.message}`;
+    }
+}
+    </script>
+</body>
+</html>
