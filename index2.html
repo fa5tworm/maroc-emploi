@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.">
+    <meta name="author" content="Otmane Echaibi">
+    <!-- Métadonnées SEO -->
+    <meta name="description" content="Trouvez les meilleures offres d'emploi au Maroc. Parcourez les annonces d'emploi dans divers secteurs et trouvez votre emploi idéal dès aujourd'hui.">
+    <meta name="keywords" content="emplois, offres d'emploi, emplois au Maroc, carrières, emploi, recrutement">
+    <meta name="author" content='Otmane Echaibi'>
+    <meta property="og:title" content="Offres d'emploi au Maroc">
+    <meta property="og:description" content="Trouvez les meilleures offres d'emploi au Maroc et obtenez votre emploi idéal.">
+    <meta property='og:image' content='logo.png'>
+    <meta property='og:url' content='https://example.com'>
+
+    <!-- Favicon -->
+    <link rel='icon' href='static/favicons/favicon.ico' type='image/x-icon'>
+    <title>Maroc Emploi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.autocomplete.min.css" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+        :root {
+            --primary: #ffc107; /* Dark gold */
+            --primary-dark: #b38600;
+            --secondary: #ffc107;
+            --background: #1a1a1a; /* Dark background */
+            --surface: #333333; /* Slightly lighter background for contrast */
+            --text: #f8f9fa; /* Light text */
+            --text-secondary: #ced4da;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+/*            font-family: 'Inter', -apple-system, sans-serif;*/
+            font-family: 'Anonymous Pro', monospace; 
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+/*            background: linear-gradient(to right, var(--primary-dark), var(--secondary));*/
+            background: #191919;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .search-section {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--text-secondary);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .job-card {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-company {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            align-items: center;
+        }
+
+        .job-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Consistent spacing between icon and text/image */
+            padding: 0.5rem 0.75rem; /* Consistent padding */
+            background: #fff;
+            color: #111;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            border: 2px solid rgba(0, 0, 0, 0.1); /* Consistent border */
+            height: 1.5rem; /* Fixed height for both tags */
+        }
+
+        /* Style for both icons */
+        .job-tag i {
+            font-size: 1rem;
+            width: 1rem; /* Fixed width for icons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Style for phone number image */
+        .job-tag img {
+            height: 1.3rem;
+            width: auto;
+            object-fit: contain; /* Maintain aspect ratio */
+        }
+
+        .posted-on {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-button {
+            padding: 0.5rem 1rem;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-button:hover:not(:disabled) {
+            background: var(--primary);
+            color: white;
+        }
+
+        .page-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-group {
+                width: 100%;
+            }
+            
+            .job-header {
+                flex-direction: column;
+            }
+        }
+        .job-description {
+            display: none;
+        }
+
+        .job-description.visible {
+            display: block;
+        }
+
+        .search-section {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-dropdown {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--text-secondary);
+            border-radius: 0.5rem;
+            background: var(--surface);
+            color: var(--text);
+            appearance: none;
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+/*            background: var(--primary);*/
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+        }
+        .job-tags .fa-map-marker-alt,
+        .job-tags .fa-clock,
+        .job-tags .fa-phone {
+            margin-right: 5px; /* Adds space between the icon and the text */
+        }
+        .job-description {
+            display: none;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .job-description.visible {
+            display: block;
+        }
+        .line-1 {
+            font-family: 'Arial', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+            position: relative;
+            top: 50%;
+            width: 0ch;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255, 255, 255, 0.75);
+            font-size: 180%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            transform: translateY(-50%);
+        }
+        
+        .anim-typewriter {
+            animation: typewriter 1s steps(13) 1s 1 normal both,
+                       blinkTextCursor 2s steps(44) infinite normal;
+        }
+        
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 13ch; /* Adjusted for "Blue Jobs &#128526;" */
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="line-1 anim-typewriter">Blue Jobs 😎</div>
+        <p>Fini les CV fantômes. Passez à l'action !</p>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-group">
+                    <select class="search-dropdown" id="city-dropdown">
+                        <option value="">Sélectionnez une ville</option>
+                    </select>
+                </div>
+                <button class="search-button" onclick="searchJobs()">
+                    <i class="fas fa-search"></i>
+                    Rechercher
+                </button>
+            </div>
+        </section>
+
+        <div id="jobs-container">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                Chargement des emplois...
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="page-button" onclick="prevPage()" id="prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="page-info" class="page-button"></span>
+            <button class="page-button" onclick="nextPage()" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Made with ❤️ by <a href="https://www.linkedin.com/in/otmane-echaibi-90a524309/">Otmane Echaibi </a>
+        &copy; <span id="year"></span></p>
+    </footer>
+
+    <div class="scroll-top" id="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.autocomplete.min.js"></script>
+    <script>
+        let jobs = [];
+        let currentPage = 1;
+        let jobsPerPage = 5;
+        let filteredJobs = [];
+        let cities = [];
+
+        // Initialize jobs data with multiple CORS proxy fallbacks
+        const originalUrl = 'https://github.com/fa5tworm/maroc-emploi/releases/download/latest/jobs.json';
+        const corsProxies = [
+            'https://yacdn.org/proxy/',
+            'https://corsproxy.io/?',
+            'https://api.allorigins.win/raw?url=',
+            'https://cors-anywhere.herokuapp.com/',
+            'https://api.codetabs.com/v1/proxy?quest=',
+            'https://thingproxy.freeboard.io/fetch/'
+        ];
+
+        async function fetchJobsWithFallback() {
+            // First try without proxy (in case CORS is enabled on the server)
+            try {
+                const response = await fetch(originalUrl);
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (error) {
+                console.log('Direct fetch failed, trying proxies...');
+            }
+
+            // Try each proxy in sequence
+            for (let i = 0; i < corsProxies.length; i++) {
+                try {
+                    const proxyUrl = corsProxies[i] + encodeURIComponent(originalUrl);
+                    console.log(`Trying proxy ${i + 1}:`, proxyUrl);
+                    
+                    const response = await fetch(proxyUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(`Success with proxy ${i + 1}`);
+                        return data;
+                    }
+                } catch (error) {
+                    console.log(`Proxy ${i + 1} failed:`, error.message);
+                    continue;
+                }
+            }
+            
+            throw new Error('All proxy attempts failed');
+        }
+
+        // Load jobs data
+        fetchJobsWithFallback()
+            .then(data => {
+                jobs = data;
+                filteredJobs = jobs;
+                cities = [...new Set(jobs.map(job => job.location))];
+                populateCityDropdown();
+                renderJobs();
+                updatePagination();
+            })
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+                showError('Erreur lors du chargement des emplois. Plusieurs tentatives ont échoué. Veuillez réessayer plus tard.');
+            });
+
+        function showError(message) {
+            const container = document.getElementById('jobs-container');
+            container.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>${message}</p>
+                    <button class="search-button" onclick="retryLoadJobs()" style="margin-top: 1rem;">
+                        <i class="fas fa-refresh"></i>
+                        Réessayer
+                    </button>
+                </div>
+            `;
+        }
+
+        function retryLoadJobs() {
+            const container = document.getElementById('jobs-container');
+            container.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Rechargement des emplois...
+                </div>
+            `;
+            
+            fetchJobsWithFallback()
+                .then(data => {
+                    jobs = data;
+                    filteredJobs = jobs;
+                    cities = [...new Set(jobs.map(job => job.location))];
+                    populateCityDropdown();
+                    renderJobs();
+                    updatePagination();
+                })
+                .catch(error => {
+                    console.error('Retry failed:', error);
+                    showError('Erreur lors du rechargement des emplois. Tous les serveurs proxy semblent indisponibles.');
+                });
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0'); // Ensures 2-digit day
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        function toggleJobDescriptionAndAd(button) {
+            const jobCard = button.closest('.job-card');
+            const description = jobCard.querySelector('.job-description');
+            const adContainer = jobCard.querySelector('.ad-container');
+
+            if (description.style.display === 'none') {
+                description.style.display = 'block';
+                adContainer.style.display = 'block';
+                button.textContent = 'Masquer la description';
+                button.style.backgroundColor = '#f44336'; // Change button color (red in this case)
+            } else {
+                description.style.display = 'none';
+                adContainer.style.display = 'none';
+                button.textContent = 'Afficher la description';
+                button.style.backgroundColor = ''; // Reset button color to default
+            }
+        }
+
+        function renderJobs() {
+            const container = document.getElementById('jobs-container');
+            
+            if (filteredJobs.length === 0) {
+                container.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-search"></i>
+                        <p>Aucun emploi trouvé pour les critères sélectionnés.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const start = (currentPage - 1) * jobsPerPage;
+            const end = start + jobsPerPage;
+            const paginatedJobs = filteredJobs.slice(start, end);
+
+            container.innerHTML = paginatedJobs.map(job => `
+                <article class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <h2 class="job-title">${job.title}</h2>
+                            <p class="job-company">${job.organization}</p>
+                        </div>
+                        <div class="posted-on">${formatDate(job.postedOn)}</div>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
+                        <span class="job-tag phone-number"><i class="fas fa-phone"></i><img src="${job.phoneNumber}"></span>
+                    </div>
+                    <div class="job-actions">
+                        <button class="search-button" onclick="toggleJobDescription(this)">
+                            Afficher la description
+                        </button>
+                    </div>
+                    <div class="job-description">${job.description}</div>
+                    <div class="ad-container" style="display: none; margin-top: 10px;">
+                        <!-- AdSense ad unit -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                             data-ad-slot="xxxxxxxxxx"
+                             data-ad-format="auto"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        <\/script>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function toggleJobDescription(button) {
+            const jobDescription = button.parentNode.nextElementSibling; // Target the job description
+            const isVisible = jobDescription.classList.toggle('visible'); // Toggle visibility
+
+            // Update button text and style based on visibility
+            if (isVisible) {
+                button.textContent = "Masquer la description"; // Change text
+                button.style.backgroundColor = "#d9534f"; // Change to a red color
+                button.style.color = "#fff"; // Ensure text is readable
+            } else {
+                button.textContent = "Afficher la description"; // Revert text
+                button.style.backgroundColor = ""; // Reset to default background
+                button.style.color = ""; // Reset to default color
+            }
+        }
+
+        function searchJobs() {
+            const selectedCity = document.getElementById('city-dropdown').value;
+            filteredJobs = selectedCity
+                ? jobs.filter(job => job.location === selectedCity)
+                : jobs;
+            currentPage = 1;
+            renderJobs();
+            updatePagination();
+        }
+
+        function populateCityDropdown() {
+            const dropdown = document.getElementById('city-dropdown');
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                dropdown.appendChild(option);
+            });
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+            document.getElementById('page-info').textContent = `${currentPage} / ${totalPages}`;
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderJobs();
+                updatePagination();
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderJobs();
+                updatePagination();
+            }
+        }
+
+        // Scroll to top functionality
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Autocomplete for location search
+        $('#location-search').autocomplete({
+            lookup: cities,
+            onSelect: function (suggestion) {
+                searchJobs();
+            }
+        });
+    </script>
+</body>
+</html>
